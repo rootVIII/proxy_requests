@@ -2,8 +2,8 @@
 <br><br>
 Pass it a fully qualified URL when inializing an instance:
 <br><br>
-r = ProxyRequests("https://www.roboshout.com")
-    print(r)
+r = ProxyRequests("https://www.roboshout.com")<br>
+&nbsp;&nbsp;print(r)
 
 It first scrapes proxies from the web
 <br><br>
