@@ -1,5 +1,4 @@
 #! /usr/bin/python3
-# https://www.roboshout.com
 import requests
 import re
 
@@ -30,6 +29,7 @@ class ProxyRequests:
                 request = requests.get(self.url, proxies=proxies)
                 self.request = request.text
             except:
+                print('hit next recursion level')
                 self.__proxy_request()
 
     def __str__(self):
