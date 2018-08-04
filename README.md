@@ -2,7 +2,7 @@
 <br><br>
 Pass it a fully qualified URL when inializing an instance:
 <br><br>
-&$msp;&emsp;r = ProxyRequests("https://www.roboshout.com")<br>
+&emsp;&emsp;r = ProxyRequests("https://www.roboshout.com")<br>
 &emsp;&emsp;print(r)
 
 It first scrapes proxies from the web
