@@ -7,6 +7,8 @@ Pass it a fully qualified URL when inializing an instance:
 
 It first scrapes proxies from the web
 <br><br>
+Then it recursively attempts to make a request if the initial request with a proxy is unsuccessful
+<br><br>
 Runs on Linux and Windows
 <br><br>
 This was developed on Ubuntu 16.04.4 LTS.
