@@ -3,7 +3,7 @@
 Pass it a fully qualified URL when inializing an instance:
 <br><br>
 r = ProxyRequests("https://www.roboshout.com")<br>
-&nbsp;&nbsp;print(r)
+&emsp;&emsp;print(r)
 
 It first scrapes proxies from the web
 <br><br>
