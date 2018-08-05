@@ -1,4 +1,4 @@
-## make an http GET with a proxy scraped from https://www.us-proxy.org/
+## make an http GET with a proxy scraped from https://www.sslproxies.org/
 <br><br>
 Pass it a fully qualified URL when inializing an instance:
 <br><br>
