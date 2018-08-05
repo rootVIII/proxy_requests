@@ -24,6 +24,6 @@ In the URL above... Whomever made ptsv2.com (for testing HTTP requests) is aweso
 <br><br>
 This was developed on Ubuntu 16.04.4 LTS.
 <br><br>
-HTTP Basic Auth coming soon as well as responses in json format etc 
+HTTP Basic Auth subclass coming soon (with overrided methods probably) 
 <hr>
 <b>Author: James Loye Colley  04AUG2018</b>
