@@ -12,6 +12,7 @@ EXAMPLE GET:<br>
 &emsp;&nbsp;r = ProxyRequests("https://www.roboshout.com")<br>
 &emsp;&nbsp;r.get()<br>
 &emsp;&nbsp;print(r)<br>
+&emsp;&nbsp;print(r.to_json())
 <br><br>
 EXAMPLE POST:<br>
 &emsp;&nbsp;r = ProxyRequests("http://ptsv2.com/t/8s8j9-1533491569/post")<br>

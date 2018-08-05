@@ -1,6 +1,7 @@
 #! /usr/bin/python3
 import requests
 import re
+import json
 
 
 class ProxyRequests:
@@ -19,7 +20,7 @@ class ProxyRequests:
         for socket_str in revised_list:
             self.sockets.append(socket_str[:-5].replace("</td>", ":"))
 
-    # recursively try socket until successful
+    # recursively try proxy sockets until successful GET
     def get(self):
         if len(self.sockets) > 0:
             current_socket = self.sockets.pop(0)
@@ -31,7 +32,7 @@ class ProxyRequests:
                 print('working...')
                 self.get()
 
-    # recursively try socket until successful POST
+    # recursively try proxy sockets until successful POST
     def post(self, data):
         if len(self.sockets) > 0:
             current_socket = self.sockets.pop(0)
@@ -43,17 +44,21 @@ class ProxyRequests:
                 print('working...')
                 self.post(self.url)
 
+    def to_json(self):
+        return json.dumps(self.request)
+
     def __str__(self):
         return str(self.request)
 
 if __name__ == "__main__":
     # example GET
-    # r = ProxyRequests("http://www.roboshout.com")
-    # r.get()
-    # print(r)
+    r = ProxyRequests("https://postman-echo.com/get?foo1=bar1&foo2=bar2")
+    r.get()
+    print(r)
+    print(r.to_json())
     # example POST
-    r = ProxyRequests("http://ptsv2.com/t/8s8j9-1533491569/post")
+    # r = ProxyRequests("http://ptsv2.com/t/8s8j9-1533491569/post")
     # can pass a string or dict:
     # r.post("dump goes in toilet")
-    r.post({"key": "value", "one": "two"})
-    print(r)
+    # r.post({"key": "value", "one": "two"})
+    # print(r)
