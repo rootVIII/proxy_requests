@@ -13,7 +13,7 @@ class ProxyRequests:
 
     # get a list of US sockets from us-proxy.org
     def __acquire_sockets(self):
-        r = requests.get("https://www.us-proxy.org/")
+        r = requests.get("https://www.sslproxies.org/")
         matches = re.findall(r"<td>\d+.\d+.\d+.\d+</td><td>\d+</td>", r.text)
         revised_list = [m1.replace("<td>", "") for m1 in matches]
         for socket_str in revised_list:
@@ -39,3 +39,4 @@ class ProxyRequests:
 if __name__ == "__main__":
     r = ProxyRequests("https://www.roboshout.com")
     print(r)
+    # r = ProxyRequests.get("https://www.roboshout.com")

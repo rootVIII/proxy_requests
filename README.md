@@ -13,6 +13,6 @@ Runs on Linux and Windows- may take a moment to run depending on current proxy
 <br><br>
 This was developed on Ubuntu 16.04.4 LTS.
 <br><br>
-POST coming soon as well as response in json format
+POST coming soon as well as response in json format and HTTP Basic Auth
 <hr>
 <b>Author: James Loye Colley  04AUG2018</b>
