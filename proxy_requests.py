@@ -11,7 +11,7 @@ class ProxyRequests:
         self.request = ""
         self.__acquire_sockets()
 
-    # get a list of US sockets from us-proxy.org
+    # get a list of US sockets from sslproxies.org
     def __acquire_sockets(self):
         r = requests.get("https://www.sslproxies.org/")
         matches = re.findall(r"<td>\d+.\d+.\d+.\d+</td><td>\d+</td>", r.text)
