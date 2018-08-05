@@ -31,9 +31,6 @@ class ProxyRequests:
                 print('working...')
                 self.get()
 
-    def __str__(self):
-        return str(self.request)
-
     # recursively try socket until successful POST
     def post(self, data):
         if len(self.sockets) > 0:
@@ -46,6 +43,8 @@ class ProxyRequests:
                 print('working...')
                 self.post(self.url)
 
+    def __str__(self):
+        return str(self.request)
 
 if __name__ == "__main__":
     # example GET
