@@ -19,7 +19,6 @@ class ProxyRequests:
         for socket_str in revised_list:
             self.sockets.append(socket_str[:-5].replace("</td>", ":"))
 
-
     # recursively try socket until successful
     def get(self):
         if len(self.sockets) > 0:
@@ -50,13 +49,12 @@ class ProxyRequests:
 
 if __name__ == "__main__":
     # example GET
-    #r = ProxyRequests("http://www.roboshout.com")
-    #r.get()
-    #print(r)
-
+    # r = ProxyRequests("http://www.roboshout.com")
+    # r.get()
+    # print(r)
     # example POST
     r = ProxyRequests("http://ptsv2.com/t/8s8j9-1533491569/post")
-    # can pass a string, dict:
-    #r.post("dump goes in toilet")
+    # can pass a string or dict:
+    # r.post("dump goes in toilet")
     r.post({"key": "value", "one": "two"})
     print(r)
