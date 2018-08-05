@@ -12,5 +12,7 @@ Then it recursively attempts to make a request if the initial request with a pro
 Runs on Linux and Windows- may take a moment to run depending on current proxy
 <br><br>
 This was developed on Ubuntu 16.04.4 LTS.
+<br><br>
+POST coming soon as well as resoponse in json
 <hr>
 <b>Author: James Loye Colley  04AUG2018</b>
