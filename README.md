@@ -15,7 +15,8 @@ EXAMPLE GET:<br>
 <br><br>
 EXAMPLE POST:<br>
 &emsp;&nbsp;r = ProxyRequests("http://ptsv2.com/t/8s8j9-1533491569/post")<br>
-&emsp;&nbsp;r.post({"key": "value"}) or r.post("string here")<br>
+&emsp;&nbsp;r.post({"key": "value"})<br>
+&emsp;&nbsp;r.post("string here")<br>
 &emsp;&nbsp;print(r)<br>
 <br><br>
 In the URL above... Whomever made ptsv2.com (for testing HTTP requests) is awesome... NO setup and NO accounts needed
