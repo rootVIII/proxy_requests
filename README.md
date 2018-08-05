@@ -1,4 +1,4 @@
-## make an http GET with a proxy scraped from https://www.sslproxies.org/
+## make an http GET/POST with a proxy scraped from https://www.sslproxies.org/
 <br><br>
 It first scrapes proxies from the web
 <br><br>
