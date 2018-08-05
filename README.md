@@ -9,7 +9,7 @@ It first scrapes proxies from the web
 <br><br>
 Then it recursively attempts to make a request if the initial request with a proxy is unsuccessful
 <br><br>
-Runs on Linux and Windows
+Runs on Linux and Windows- may take a moment to run depending on current proxy
 <br><br>
 This was developed on Ubuntu 16.04.4 LTS.
 <hr>
