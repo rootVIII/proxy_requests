@@ -9,7 +9,7 @@ Runs on Linux and Windows- may take a moment to run depending on current proxy
 Pass it a fully qualified URL when inializing an instance:
 <br><br>
 EXAMPLE GET:<br>
-&emsp;&nbsp;r = ProxyRequests("https://www.roboshout.com")<br>
+&emsp;&nbsp;r = ProxyRequests("https://postman-echo.com/get?foo1=bar1&foo2=bar2")<br>
 &emsp;&nbsp;r.get()<br>
 &emsp;&nbsp;print(r)<br>
 &emsp;&nbsp;print(r.to_json())
