@@ -10,6 +10,7 @@ class ProxyRequests:
         self.url = url
         self.proxy = ""
         self.request = ""
+        self.headers = ""
         self.__acquire_sockets()
 
     # get a list of sockets from sslproxies.org
@@ -28,6 +29,7 @@ class ProxyRequests:
             try:
                 request = requests.get(self.url, proxies=proxies)
                 self.request = request.text
+                self.headers = request.headers
             except:
                 print('working...')
                 self.get()
@@ -40,12 +42,16 @@ class ProxyRequests:
             try:
                 request = requests.post(self.url, data=data, proxies=proxies)
                 self.request = request.text
+                self.headers = request.headers
             except:
                 print('working...')
                 self.post(self.url)
 
     def to_json(self):
         return json.dumps(self.request)
+
+    def get_headers(self):
+        return self.headers
 
     def __str__(self):
         return str(self.request)
@@ -55,10 +61,18 @@ if __name__ == "__main__":
     r = ProxyRequests("https://postman-echo.com/get?foo1=bar1&foo2=bar2")
     r.get()
     print(r)
+    print('\n')
     print(r.to_json())
+    print('\n')
+    print(r.get_headers())
+    print('\n')
     # example POST
-    # r = ProxyRequests("http://ptsv2.com/t/8s8j9-1533491569/post")
-    # can pass a string or dict:
-    # r.post("dump goes in toilet")
-    # r.post({"key": "value", "one": "two"})
+    # r = ProxyRequests("http://ptsv2.com/t/4wuzv-1533524018/post")
+    # can pass a string:
+    # r.post("lets post a string")
+    # lets post a dictionary/json
+    # r.post({"key1": "value1", "key2": "value2"})
+    # print('\n')
     # print(r)
+    # print('\n')
+    # print(r.get_headers())
