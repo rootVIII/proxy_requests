@@ -1,12 +1,11 @@
 ## make an http GET/POST with a proxy scraped from https://www.sslproxies.org/
-<br><br>
 The ProxyRequests class first scrapes proxies from the web
 <br><br>
 Then it recursively attempts to make a request if the initial request with a proxy is unsuccessful
 <br><br>
 Runs on Linux and Windows-<b>may take a moment to run depending on current proxy</b>
 <br><br>
-Pass it a fully qualified URL when inializing an instance
+Pass it a fully qualified URL when initializing an instance
 <br><br>
 The ProxyRequestBasicAuth subclass has a GET and POST that will override the Parent methods
 <br><br>
