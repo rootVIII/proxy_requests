@@ -114,15 +114,15 @@ class ProxyRequestsBasicAuth(ProxyRequests):
 
 if __name__ == "__main__":
     # ###### example GET ###### #
-    # r = ProxyRequests("https://postman-echo.com/get?foo1=bar1&foo2=bar2")
-    # r.get()
+    r = ProxyRequests("https://postman-echo.com/get?foo1=bar1&foo2=bar2")
+    r.get()
     # ###### example POST ###### #
-    r = ProxyRequests("http://ptsv2.com/t/706cu-1533594868/post")
-    r.post({"key1": "value1", "key2": "value2"})
-    # ###### example get with Basic Authentication: ###### #
+    # r = ProxyRequests("http://ptsv2.com/t/706cu-1533594868/post")
+    # r.post({"key1": "value1", "key2": "value2"})
+    # ###### example GET with Basic Authentication: ###### #
     # r = ProxyRequestsBasicAuth("https://postman-echo.com/basic-auth/", "postman", "password")
     # r.get()
-    # ###### example post with Basic Authentication ###### #
+    # ###### example POST with Basic Authentication ###### #
     # r = ProxyRequestsBasicAuth("url here", "username", "password")
     # r.post({"key1": "value1", "key2": "value2"})
     print('\n')
