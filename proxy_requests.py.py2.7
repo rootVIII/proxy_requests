@@ -1,11 +1,11 @@
-#! /usr/bin/python3
+#! /usr/bin/python
 import requests
 import re
 import json
 from requests.auth import HTTPBasicAuth
 
 
-class ProxyRequests:
+class ProxyRequests(object):
     def __init__(self, url):
         self.sockets = []
         self.url = url
@@ -55,7 +55,7 @@ class ProxyRequests:
                 self.post(self.url)
 
     def to_json(self):
-        return json.dumps(self.request)
+        return json.dumps(json.JSONDecoder().decode(self.request))
 
     def get_headers(self):
         return self.headers
@@ -72,7 +72,7 @@ class ProxyRequests:
 
 class ProxyRequestsBasicAuth(ProxyRequests):
     def __init__(self, url, username, password):
-        super().__init__(url)
+        super(ProxyRequestsBasicAuth, self).__init__(url)
         self.username = username
         self.password = password
 
@@ -117,11 +117,11 @@ if __name__ == "__main__":
     # r = ProxyRequests("https://postman-echo.com/get?foo1=bar1&foo2=bar2")
     # r.get()
     # ###### example POST ###### #
-    r = ProxyRequests("http://ptsv2.com/t/706cu-1533594868/post")
-    r.post({"key1": "value1", "key2": "value2"})
+    # r = ProxyRequests("http://ptsv2.com/t/706cu-1533594868/post")
+    # r.post({"key1": "value1", "key2": "value2"})
     # ###### example get with Basic Authentication: ###### #
-    # r = ProxyRequestsBasicAuth("https://postman-echo.com/basic-auth/", "postman", "password")
-    # r.get()
+    r = ProxyRequestsBasicAuth("https://postman-echo.com/basic-auth/post", "postman", "password")
+    r.get()
     # ###### example post with Basic Authentication ###### #
     # r = ProxyRequestsBasicAuth("url here", "username", "password", "postman", "password")
     # r.post({"key1": "value1", "key2": "value2"})
