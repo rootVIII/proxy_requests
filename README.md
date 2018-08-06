@@ -12,14 +12,14 @@ The ProxyRequestBasicAuth subclass has a GET and POST that will override the P$
 <br><br>
 <b>example GET:</b><br>
 &emsp;&nbsp;r = ProxyRequests("https://postman-echo.com/get?foo1=bar1&foo2=bar2")<br>
-&emsp;&nbsp;r.get()
-<b>example POST:</b><br>
+&emsp;&nbsp;r.get()<br><br>
+<b>example POST:</b>
 &emsp;&nbsp;r = ProxyRequests("http://ptsv2.com/t/706cu-1533594868/post")<br>
-&emsp;&nbsp;r.post({"key1": "value1", "key2": "value2"})<br>
-<b>example GET with Basic Authentication:</b><br><br>
+&emsp;&nbsp;r.post({"key1": "value1", "key2": "value2"})<br><br>
+<b>example GET with Basic Authentication:</b><br>
 &emsp;&nbsp;r = ProxyRequestsBasicAuth("https://postman-echo.com/basic-auth/", "postman", "password")<br>
-&emsp;&nbsp;r.get()
-<b>example post with Basic Authentication</b><br><br>
+&emsp;&nbsp;r.get()<br><br>
+<b>example post with Basic Authentication</b><br>
 r = ProxyRequestsBasicAuth("url here", "username", "password", "postman", "password")<br>
 r.post({"key1": "value1", "key2": "value2"})<br>
 print('\n')<br>
