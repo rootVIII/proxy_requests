@@ -123,7 +123,7 @@ if __name__ == "__main__":
     # r = ProxyRequestsBasicAuth("https://postman-echo.com/basic-auth/", "postman", "password")
     # r.get()
     # ###### example post with Basic Authentication ###### #
-    # r = ProxyRequestsBasicAuth("url here", "username", "password", "postman", "password")
+    # r = ProxyRequestsBasicAuth("url here", "username", "password")
     # r.post({"key1": "value1", "key2": "value2"})
     print('\n')
     print(r)
