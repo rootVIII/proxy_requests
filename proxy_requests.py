@@ -55,7 +55,7 @@ class ProxyRequests:
                 self.post(self.url)
 
     def to_json(self):
-        return json.dumps(self.request)
+        return json.dumps(json.JSONDecoder().decode(self.request))
 
     def get_headers(self):
         return self.headers
@@ -117,7 +117,7 @@ if __name__ == "__main__":
     r = ProxyRequests("https://postman-echo.com/get?foo1=bar1&foo2=bar2")
     r.get()
     # ###### example POST ###### #
-    # r = ProxyRequests("http://ptsv2.com/t/706cu-1533594868/post")
+    # r = ProxyRequests("http://ptsv2.com/t/8kcv9-1533600808/post")
     # r.post({"key1": "value1", "key2": "value2"})
     # ###### example GET with Basic Authentication: ###### #
     # r = ProxyRequestsBasicAuth("https://postman-echo.com/basic-auth/", "postman", "password")
