@@ -3,7 +3,7 @@ The ProxyRequests class first scrapes proxies from the web
 <br><br>
 Then it recursively attempts to make a request if the initial request with a proxy is unsuccessful
 <br><br>
-Runs on Linux and Windows-<b>may take a moment to run depending on current proxy. Occassionally a proxy will be very slow... actively working on a solution to time out and skip to the next depth of recursion</b>
+Runs on Linux and Windows-<b>may take a moment to run depending on current proxy</b>
 <br><br>
 Pass it a fully qualified URL when initializing an instance
 <br><br>
