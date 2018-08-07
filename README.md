@@ -30,6 +30,6 @@ print(r.get_proxy_used())
 The to_json() method is not intended to be used for a string of HTML<br><br>
 This was developed on Ubuntu 16.04.4 LTS.
 <br><br>
-Delete method, post file method, and possibly a POST method with headers as well.
+coming soon.... a DELETE method, POST-file method, and possibly a POST-with-headers method as well.
 <hr>
 <b>Author: James Loye Colley  04AUG2018</b>
