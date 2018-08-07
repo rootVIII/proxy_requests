@@ -30,7 +30,7 @@ class ProxyRequests:
             current_socket = self.sockets.pop(0)
             proxies = {"https": "https://" + current_socket}
             try:
-                request = requests.get(self.url, proxies=proxies)
+                request = requests.get(self.url, timeout=4.0, proxies=proxies)
                 self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
@@ -45,7 +45,7 @@ class ProxyRequests:
             current_socket = self.sockets.pop(0)
             proxies = {"https": "https://" + current_socket}
             try:
-                request = requests.post(self.url, json=data, proxies=proxies)
+                request = requests.post(self.url, json=data, timeout=4.0, proxies=proxies)
                 self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
@@ -84,6 +84,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
             try:
                 request = requests.get(self.url,
                                        auth=(self.username, self.password),
+                                       timeout=4.0,
                                        proxies=proxies)
                 self.request = request.text
                 self.headers = request.headers
@@ -102,6 +103,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                 request = requests.post(self.url,
                                         json=data,
                                         auth=(self.username, self.password),
+                                        timeout=4.0,
                                         proxies=proxies)
                 self.request = request.text
                 self.headers = request.headers
