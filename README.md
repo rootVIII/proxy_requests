@@ -27,7 +27,7 @@ print(r.get_status_code())<br>
 print(r.to_json())<br>
 print(r.get_proxy_used())
 <br><br>
-The get_json() method is not intended to be used for a string of HTML<br><br>
+The to_json() method is not intended to be used for a string of HTML<br><br>
 This was developed on Ubuntu 16.04.4 LTS.
 <br><br>
 The Python 2 version inside proxy_requests2.7 may give warnings due to the older requests module. Therefore the Python 3 version is recommended.<br><br>
