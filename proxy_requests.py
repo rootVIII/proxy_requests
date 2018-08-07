@@ -30,7 +30,7 @@ class ProxyRequests:
             current_socket = self.sockets.pop(0)
             proxies = {"https": "https://" + current_socket}
             try:
-                request = requests.get(self.url, timeout=4.0, proxies=proxies)
+                request = requests.get(self.url, timeout=3.0, proxies=proxies)
                 self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
@@ -45,7 +45,7 @@ class ProxyRequests:
             current_socket = self.sockets.pop(0)
             proxies = {"https": "https://" + current_socket}
             try:
-                request = requests.post(self.url, json=data, timeout=4.0, proxies=proxies)
+                request = requests.post(self.url, json=data, timeout=3.0, proxies=proxies)
                 self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
@@ -84,7 +84,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
             try:
                 request = requests.get(self.url,
                                        auth=(self.username, self.password),
-                                       timeout=4.0,
+                                       timeout=3.0,
                                        proxies=proxies)
                 self.request = request.text
                 self.headers = request.headers
@@ -103,7 +103,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                 request = requests.post(self.url,
                                         json=data,
                                         auth=(self.username, self.password),
-                                        timeout=4.0,
+                                        timeout=3.0,
                                         proxies=proxies)
                 self.request = request.text
                 self.headers = request.headers
@@ -116,14 +116,14 @@ class ProxyRequestsBasicAuth(ProxyRequests):
 
 if __name__ == "__main__":
     # ###### example GET ###### #
-    r = ProxyRequests("https://postman-echo.com/get?foo1=bar1&foo2=bar2")
-    r.get()
+    #r = ProxyRequests("https://postman-echo.com/get?foo1=bar1&foo2=bar2")
+    # r.get()
     # ###### example POST ###### #
     # r = ProxyRequests("http://ptsv2.com/t/8kcv9-1533600808/post")
     # r.post({"key1": "value1", "key2": "value2"})
     # ###### example GET with Basic Authentication: ###### #
-    # r = ProxyRequestsBasicAuth("https://postman-echo.com/basic-auth/", "postman", "password")
-    # r.get()
+    r = ProxyRequestsBasicAuth("https://postman-echo.com/basic-auth/", "postman", "password")
+    r.get()
     # ###### example POST with Basic Authentication ###### #
     # r = ProxyRequestsBasicAuth("url here", "username", "password")
     # r.post({"key1": "value1", "key2": "value2"})
