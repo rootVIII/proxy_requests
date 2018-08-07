@@ -19,13 +19,13 @@ The ProxyRequestBasicAuth subclass has a GET and POST that will override the Par
 &emsp;&nbsp;r = ProxyRequestsBasicAuth("https://postman-echo.com/basic-auth/", "postman", "password")<br>
 &emsp;&nbsp;r.get()<br><br>
 <b>example post with Basic Authentication</b><br>
-r = ProxyRequestsBasicAuth("url here", "username", "password")<br>
-r.post({"key1": "value1", "key2": "value2"})<br><br>
-print(r)<br>
-print(r.get_headers())<br>
-print(r.get_status_code())<br>
-print(r.to_json())<br>
-print(r.get_proxy_used())
+&emsp;&nbsp;r = ProxyRequestsBasicAuth("url here", "username", "password")<br>
+&emsp;&nbsp;r.post({"key1": "value1", "key2": "value2"})<br><br>
+&emsp;&nbsp;print(r)<br>
+&emsp;&nbsp;print(r.get_headers())<br>
+&emsp;&nbsp;print(r.get_status_code())<br>
+&emsp;&nbsp;print(r.to_json())<br>
+&emsp;&nbsp;print(r.get_proxy_used())
 <br><br>
 The to_json() method is not intended to be used for a string of HTML<br><br>
 This was developed on Ubuntu 16.04.4 LTS.
