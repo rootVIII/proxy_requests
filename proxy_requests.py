@@ -28,7 +28,7 @@ class ProxyRequests:
     def get(self):
         if len(self.sockets) > 0:
             current_socket = self.sockets.pop(0)
-            proxies = {"https": "https://" + current_socket}
+            proxies = {"http": "http://" + current_socket, "https": "https://" + current_socket}
             try:
                 request = requests.get(self.url, timeout=3.0, proxies=proxies)
                 self.request = request.text
@@ -43,7 +43,7 @@ class ProxyRequests:
     def post(self, data):
         if len(self.sockets) > 0:
             current_socket = self.sockets.pop(0)
-            proxies = {"https": "https://" + current_socket}
+            proxies = {"http": "http://" + current_socket, "https": "https://" + current_socket}
             try:
                 request = requests.post(self.url, json=data, timeout=3.0, proxies=proxies)
                 self.request = request.text
@@ -80,7 +80,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
     def get(self):
         if len(self.sockets) > 0:
             current_socket = self.sockets.pop(0)
-            proxies = {"https": "https://" + current_socket}
+            proxies = {"http": "http://" + current_socket, "https": "https://" + current_socket}
             try:
                 request = requests.get(self.url,
                                        auth=(self.username, self.password),
@@ -98,7 +98,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
     def post(self, data):
         if len(self.sockets) > 0:
             current_socket = self.sockets.pop(0)
-            proxies = {"https": "https://" + current_socket}
+            proxies = {"http": "http://" + current_socket, "https": "https://" + current_socket}
             try:
                 request = requests.post(self.url,
                                         json=data,
@@ -119,11 +119,11 @@ if __name__ == "__main__":
     #r = ProxyRequests("https://postman-echo.com/get?foo1=bar1&foo2=bar2")
     # r.get()
     # ###### example POST ###### #
-    # r = ProxyRequests("http://ptsv2.com/t/8kcv9-1533600808/post")
-    # r.post({"key1": "value1", "key2": "value2"})
+    r = ProxyRequests("http://ptsv2.com/t/08iez-1533684032/post")
+    r.post({"key1": "value1", "key2": "value2"})
     # ###### example GET with Basic Authentication: ###### #
-    r = ProxyRequestsBasicAuth("https://postman-echo.com/basic-auth/", "postman", "password")
-    r.get()
+    #r = ProxyRequestsBasicAuth("https://postman-echo.com/basic-auth/", "postman", "password")
+    #r.get()
     # ###### example POST with Basic Authentication ###### #
     # r = ProxyRequestsBasicAuth("url here", "username", "password")
     # r.post({"key1": "value1", "key2": "value2"})
@@ -134,6 +134,6 @@ if __name__ == "__main__":
     print('\n')
     print(r.get_status_code())
     print('\n')
-    print(r.to_json())
+    #print(r.to_json())
     print('\n')
     print(r.get_proxy_used())
