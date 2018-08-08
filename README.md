@@ -9,14 +9,16 @@ Pass it a fully qualified URL when initializing an instance
 <br><br>
 The ProxyRequestBasicAuth subclass has a GET and POST that will override the Parent methods
 <br><br>
+
+<br><br>
 <b>example GET:</b><br>
 &emsp;&nbsp;r = ProxyRequests("https://postman-echo.com/get?foo1=bar1&foo2=bar2")<br>
 &emsp;&nbsp;r.get()<br><br>
 <b>example POST:</b><br>
-&emsp;&nbsp;r = ProxyRequests("http://ptsv2.com/t/706cu-1533594868/post")<br>
+&emsp;&nbsp;r = ProxyRequests("url here")<br>
 &emsp;&nbsp;r.post({"key1": "value1", "key2": "value2"})<br><br>
 <b>example POST with headers:</b><br>
-&emsp;&nbsp;r = ProxyRequests("http://ptsv2.com/t/08iez-1533684032/post")<br>
+&emsp;&nbsp;r = ProxyRequests("url here")<br>
 &emsp;&nbsp;r.set_headers({"name": "rootVIII", "secret_message": "7Yufs9KIfj33d"})<br>
 &emsp;&nbsp;r.post_with_headers({"key1": "value1", "key2": "value2"})<br><br>
 <b>example GET with Basic Authentication:</b><br>
