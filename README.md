@@ -7,7 +7,7 @@ Runs on Linux and Windows-<b>may take a moment to run depending on current proxy
 <br><br>
 Pass it a fully qualified URL when initializing an instance
 <br><br>
-The ProxyRequestBasicAuth subclass has a GET and POST that will override the Parent methods
+The ProxyRequestBasicAuth subclass has get, post, and post_with_headers methods that will override the Parent methods
 <br><br>
 
 <br><br>
