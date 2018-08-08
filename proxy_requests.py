@@ -70,7 +70,7 @@ class ProxyRequests:
                 self.proxy_used = current_socket
             except:
                 print('working...')
-                self.post(self.url)
+                self.post_with_headers(self.url)
 
     def to_json(self):
         return json.dumps(json.JSONDecoder().decode(self.request))
@@ -134,6 +134,26 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                 print('working...')
                 self.post(self.url)
 
+    # recursively try proxy sockets until successful POST (overrided method)
+    def post_with_headers(self, data):
+        if len(self.sockets) > 0:
+            current_socket = self.sockets.pop(0)
+            proxies = {"http": "http://" + current_socket, "https": "https://" + current_socket}
+            try:
+                request = requests.post(self.url,
+                                        json=data,
+                                        auth=(self.username, self.password),
+                                        timeout=3.0,
+                                        headers=self.headers,
+                                        proxies=proxies)
+                self.request = request.text
+                self.headers = request.headers
+                self.status_code = request.status_code
+                self.proxy_used = current_socket
+            except:
+                print('working...')
+                self.post_with_headers(self.url)
+
 
 if __name__ == "__main__":
     # ###### example GET ###### #
@@ -143,15 +163,18 @@ if __name__ == "__main__":
     # r = ProxyRequests("http://ptsv2.com/t/08iez-1533684032/post")
     # r.post({"key1": "value1", "key2": "value2"})
     # ###### example POST with headers: ###### #
-    r = ProxyRequests("http://ptsv2.com/t/08iez-1533684032/post")
-    r.set_headers({"name": "rootVIII"})
-    r.post_with_headers({"key1": "value1", "key2": "value2"})
+    # r = ProxyRequests("http://ptsv2.com/t/08iez-1533684032/post")
+    # r.set_headers({"name": "rootVIII"})
+    # r.post_with_headers({"key1": "value1", "key2": "value2"})
     # ###### example GET with Basic Authentication: ###### #
     # r = ProxyRequestsBasicAuth("https://postman-echo.com/basic-auth/", "postman", "password")
     # r.get()
     # ###### example POST with Basic Authentication ###### #
     # r = ProxyRequestsBasicAuth("url here", "username", "password")
     # r.post({"key1": "value1", "key2": "value2"})
+    r = ProxyRequestsBasicAuth("http://ptsv2.com/t/08iez-1533684032/post", "james", "passwordy")
+    r.set_headers({"name": "rootVIII"})
+    r.post_with_headers({"key1": "value1", "key2": "value2"})
     print('\n')
     print(r)
     print('\n')
