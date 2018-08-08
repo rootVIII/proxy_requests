@@ -72,6 +72,7 @@ class ProxyRequests:
                 print('working...')
                 self.post_with_headers(self.url)
 
+    # not intended for string or html... a string may work but should be for a json dict response
     def to_json(self):
         return json.dumps(json.JSONDecoder().decode(self.request))
 
@@ -160,12 +161,12 @@ if __name__ == "__main__":
     # r = ProxyRequests("https://postman-echo.com/get?foo1=bar1&foo2=bar2")
     # r.get()
     # ###### example POST ###### #
-    # r = ProxyRequests("http://ptsv2.com/t/08iez-1533684032/post")
-    # r.post({"key1": "value1", "key2": "value2"})
+    r = ProxyRequests("https://postman-echo.com/post")
+    r.post({"key1": "value1", "key2": "value2"})
     # ###### example POST with headers: ###### #
-    # r = ProxyRequests("http://ptsv2.com/t/08iez-1533684032/post")
-    # r.set_headers({"name": "rootVIII"})
-    # r.post_with_headers({"key1": "value1", "key2": "value2"})
+    #r = ProxyRequests("http://ptsv2.com/t/vbf12-1533692373/post")
+    #r.set_headers({"name": "rootVIII", "secret_message": "7Yufs9KIfj33d"})
+    #r.post_with_headers({"key1": "value1", "key2": "value2"})
     # ###### example GET with Basic Authentication: ###### #
     # r = ProxyRequestsBasicAuth("https://postman-echo.com/basic-auth/", "postman", "password")
     # r.get()
@@ -173,9 +174,9 @@ if __name__ == "__main__":
     # r = ProxyRequestsBasicAuth("url here", "username", "password")
     # r.post({"key1": "value1", "key2": "value2"})
     # ###### example POST with headers and  Basic Authentication ###### #
-    r = ProxyRequestsBasicAuth("http://ptsv2.com/t/08iez-1533684032/post", "username", "password")
-    r.set_headers({"name": "rootVIII", "secret_message": "7Yufs9KIfj33d"})
-    r.post_with_headers({"key1": "value1", "key2": "value2"})
+    # r = ProxyRequestsBasicAuth("http://ptsv2.com/t/08iez-1533684032/post", "username", "password")
+    # r.set_headers({"name": "rootVIII", "secret_message": "7Yufs9KIfj33d"})
+    # r.post_with_headers({"key1": "value1", "key2": "value2"})
     print('\n')
     print(r)
     print('\n')
