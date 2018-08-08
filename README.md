@@ -15,6 +15,10 @@ The ProxyRequestBasicAuth subclass has a GET and POST that will override the Par
 <b>example POST:</b><br>
 &emsp;&nbsp;r = ProxyRequests("http://ptsv2.com/t/706cu-1533594868/post")<br>
 &emsp;&nbsp;r.post({"key1": "value1", "key2": "value2"})<br><br>
+<b>example POST with headers:</b><br>
+&emsp;&nbsp;r = ProxyRequests("http://ptsv2.com/t/08iez-1533684032/post")
+&emsp;&nbsp;r.set_headers({"name": "rootVIII"})
+&emsp;&nbsp;r.post_with_headers({"key1": "value1", "key2": "value2"})<br><br>
 <b>example GET with Basic Authentication:</b><br>
 &emsp;&nbsp;r = ProxyRequestsBasicAuth("https://postman-echo.com/basic-auth/", "postman", "password")<br>
 &emsp;&nbsp;r.get()<br><br>
