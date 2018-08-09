@@ -178,8 +178,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                 print('working...')
                 self.post_with_headers(data)
 
-                # recursively try proxy sockets until successful POST with file
-
+    # recursively try proxy sockets until successful POST with file
     def post_file(self):
         if len(self.sockets) > 0:
             current_socket = self.sockets.pop(0)
