@@ -9,8 +9,6 @@ Pass it a fully qualified URL when initializing an instance
 <br><br>
 The ProxyRequestBasicAuth subclass has get, post, post_with_headers, and post_file methods that will override the Parent methods
 <br><br>
-
-<br><br>
 <b>example GET:</b><br>
 &emsp;&nbsp;r = ProxyRequests("https://postman-echo.com/get?foo1=bar1&foo2=bar2")<br>
 &emsp;&nbsp;r.get()<br><br>
