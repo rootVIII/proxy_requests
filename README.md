@@ -47,4 +47,4 @@ The to_json() method is not intended to be used for a string of HTML<br><br>
 This was developed on Ubuntu 16.04.4 LTS.
 <hr>
 <b>Author: James Loye Colley  04AUG2018</b><br>
-<img src="https://github.com/rootVIII/proxy_requests/blob/master/example_usage.png" alt="example" height="650" width="800">
+<img src="https://github.com/rootVIII/proxy_requests/blob/master/example_usage.png" alt="example" height="675" width="950">
