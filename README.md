@@ -20,11 +20,11 @@ The ProxyRequestBasicAuth subclass has get, post, post_with_headers, and post_fi
 &emsp;&nbsp;r.set_headers({"name": "rootVIII", "secret_message": "7Yufs9KIfj33d"})<br>
 &emsp;&nbsp;r.post_with_headers({"key1": "value1", "key2": "value2"})<br><br>
 <b>example POST FILE:</b><br>
-&emsp;&nbsp;r = ProxyRequests("http://ptsv2.com/t/l4h0y-1533772770/post")<br>
+&emsp;&nbsp;r = ProxyRequests("url here")<br>
 &emsp;&nbsp;r.set_file({'file': open('test.txt', 'rb')})<br>
 &emsp;&nbsp;r.post_file()<br><br>
 <b>example GET with Basic Authentication:</b><br>
-&emsp;&nbsp;r = ProxyRequestsBasicAuth("https://postman-echo.com/basic-auth/", "postman", "password")<br>
+&emsp;&nbsp;r = ProxyRequestsBasicAuth("url here", "username", "password")<br>
 &emsp;&nbsp;r.get()<br><br>
 <b>example post with Basic Authentication</b><br>
 &emsp;&nbsp;r = ProxyRequestsBasicAuth("url here", "username", "password")<br>
@@ -34,7 +34,7 @@ The ProxyRequestBasicAuth subclass has get, post, post_with_headers, and post_fi
 &emsp;&nbsp;r.set_headers({"header_key": "header_value"})<br>
 &emsp;&nbsp;r.post_with_headers({"key1": "value1", "key2": "value2"})<br><br>
 <b>example POST FILE with Basic Authentication:</b><br>
-&emsp;&nbsp;r = ProxyRequestsBasicAuth("http://ptsv2.com/t/l4h0y-1533772770/post", "username", "password")<br>
+&emsp;&nbsp;r = ProxyRequestsBasicAuth("url here", "username", "password")<br>
 &emsp;&nbsp;r.set_file({'file': open('test.txt', 'rb')})<br>
 &emsp;&nbsp;r.post_file()<br><br>
 &emsp;&nbsp;print(r)<br>
