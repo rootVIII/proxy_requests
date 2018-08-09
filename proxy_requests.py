@@ -198,11 +198,14 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                 print('working...')
                 self.post_file()
 
+    def __str__(self):
+        return str(self.request)
+
 
 if __name__ == "__main__":
     # ###### example GET ###### #
-    # r = ProxyRequests("https://postman-echo.com/get?foo1=bar1&foo2=bar2")
-    # r.get()
+    r = ProxyRequests("https://postman-echo.com/get?foo1=bar1&foo2=bar2")
+    r.get()
     #
     # ###### example POST ###### #
     # r = ProxyRequests("https://postman-echo.com/post")
@@ -233,9 +236,9 @@ if __name__ == "__main__":
     # r.post_with_headers({"key1": "value1", "key2": "value2"})
     #
     # ###### example POST file with Basic Authentication ###### #
-    r = ProxyRequestsBasicAuth("http://ptsv2.com/t/l4h0y-1533772770/post", "username", "password")
-    r.set_file({'file': open('test.txt', 'rb')})
-    r.post_file()
+    # r = ProxyRequestsBasicAuth("http://ptsv2.com/t/l4h0y-1533772770/post", "username", "password")
+    # r.set_file({'file': open('test.txt', 'rb')})
+    # r.post_file()
     print('\n')
     print(r)
     print('\n')
