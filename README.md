@@ -3,6 +3,8 @@ The ProxyRequests class first scrapes proxies from the web
 <br><br>
 Then it recursively attempts to make a request if the initial request with a proxy is unsuccessful
 <br><br>
+Requirements: Python 3 and the requests module
+<br><br>
 Runs on Linux and Windows-<b>may take a moment to run depending on current proxy</b>
 <br><br>
 Pass it a fully qualified URL when initializing an instance
