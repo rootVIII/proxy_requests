@@ -17,7 +17,6 @@ class ProxyRequests:
         self.status_code = ""
         self.proxy_used = ""
 
-
     # get a list of sockets from sslproxies.org
     def __acquire_sockets(self):
         r = requests.get("https://www.sslproxies.org/")
@@ -204,27 +203,35 @@ if __name__ == "__main__":
     # ###### example GET ###### #
     # r = ProxyRequests("https://postman-echo.com/get?foo1=bar1&foo2=bar2")
     # r.get()
+    #
     # ###### example POST ###### #
     # r = ProxyRequests("https://postman-echo.com/post")
     # r.post({"key1": "value1", "key2": "value2"})
+    #
     # ###### example POST with headers: ###### #
     # r = ProxyRequests("http://ptsv2.com/t/l4h0y-1533772770/post")
     # r.set_headers({"name": "rootVIII", "secret_message": "7Yufs9KIfj33d"})
     # r.post_with_headers({"key1": "value1", "key2": "value2"})
+    #
     # ###### example POST file ###### #
     # r = ProxyRequests("http://ptsv2.com/t/l4h0y-1533772770/post")
     # r.set_file({'file': open('test.txt', 'rb')})
     # r.post_file()
+    #
     # ###### example GET with Basic Authentication: ###### #
     # r = ProxyRequestsBasicAuth("https://postman-echo.com/basic-auth/", "postman", "password")
     # r.get()
+    #
     # ###### example POST with Basic Authentication ###### #
+    #
     # r = ProxyRequestsBasicAuth("url here", "username", "password")
     # r.post({"key1": "value1", "key2": "value2"})
     # ###### example POST with headers and  Basic Authentication ###### #
+    #
     # r = ProxyRequestsBasicAuth("http://ptsv2.com/t/l4h0y-1533772770/post", "username", "password")
     # r.set_headers({"name": "rootVIII", "secret_message": "7Yufs9KIfj33d"})
     # r.post_with_headers({"key1": "value1", "key2": "value2"})
+    #
     # ###### example POST file with Basic Authentication ###### #
     r = ProxyRequestsBasicAuth("http://ptsv2.com/t/l4h0y-1533772770/post", "username", "password")
     r.set_file({'file': open('test.txt', 'rb')})
