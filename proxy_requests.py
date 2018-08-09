@@ -225,11 +225,10 @@ if __name__ == "__main__":
     # r.get()
     #
     # ###### example POST with Basic Authentication ###### #
-    #
-    # r = ProxyRequestsBasicAuth("url here", "username", "password")
+    # r = ProxyRequestsBasicAuth("http://ptsv2.com/t/n25v8-1533857107/post", "username", "password")
     # r.post({"key1": "value1", "key2": "value2"})
+
     # ###### example POST with headers and  Basic Authentication ###### #
-    #
     # r = ProxyRequestsBasicAuth("http://ptsv2.com/t/l4h0y-1533772770/post", "username", "password")
     # r.set_headers({"name": "rootVIII", "secret_message": "7Yufs9KIfj33d"})
     # r.post_with_headers({"key1": "value1", "key2": "value2"})
