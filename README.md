@@ -7,6 +7,14 @@ Requirements: Python 3 and the requests module
 <br><br>
 Runs on Linux and Windows-<b>may take a moment to run depending on current proxy</b>
 <br><br>
+Either copy the code and put where you want it, or download via pip:
+<br><br>
+&emsp;&nbsp;pip3 install proxy-requests
+<br>
+&emsp;&nbsp;from proxy_requests import proxy_requests
+<br><br>
+Just be aware that method calls may vary slightly than shown below depending on how you import the module
+<br><br>
 Pass it a fully qualified URL when initializing an instance
 <br><br>
 The ProxyRequestBasicAuth subclass has get, post, post_with_headers, and post_file methods that will override the Parent methods
@@ -47,6 +55,12 @@ The ProxyRequestBasicAuth subclass has get, post, post_with_headers, and post_fi
 <br><br>
 The to_json() method is not intended to be used for a string of HTML<br><br>
 This was developed on Ubuntu 16.04.4 LTS.
+<br><br>
+If downloaded via pip3, your method calls may look slightly different depending on your import statement:
+<br><br>
+&emsp;&nbsp;from proxy_requests import proxy_requests
+&emsp;&nbsp;r = proxy_requests.ProxyRequests("https://postman-echo.com/get?foo1=bar1&foo2=bar2")
+&emsp;&nbsp;r.get()
 <hr>
 <b>Author: James Loye Colley  04AUG2018</b><br><br>
 Example 1:<br>
