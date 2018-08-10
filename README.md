@@ -58,8 +58,8 @@ This was developed on Ubuntu 16.04.4 LTS.
 <br><br>
 If downloaded via pip3, your method calls may look slightly different depending on your import statement:
 <br><br>
-&emsp;&nbsp;from proxy_requests import proxy_requests
-&emsp;&nbsp;r = proxy_requests.ProxyRequests("https://postman-echo.com/get?foo1=bar1&foo2=bar2")
+&emsp;&nbsp;from proxy_requests import proxy_requests<br>
+&emsp;&nbsp;r = proxy_requests.ProxyRequests("https://postman-echo.com/get?foo1=bar1&foo2=bar2")<br>
 &emsp;&nbsp;r.get()
 <hr>
 <b>Author: James Loye Colley  04AUG2018</b><br><br>
