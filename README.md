@@ -53,14 +53,15 @@ The ProxyRequestBasicAuth subclass has get, post, post_with_headers, and post_fi
 &emsp;&nbsp;print(r.to_json())<br>
 &emsp;&nbsp;print(r.get_proxy_used())
 <br><br>
-The to_json() method is not intended to be used for a string of HTML<br><br>
-This was developed on Ubuntu 16.04.4 LTS.
+The to_json() method is not intended to be used for a string of HTML
 <br><br>
 If downloaded via pip3, your method calls may look slightly different depending on your import statement:
 <br><br>
 &emsp;&nbsp;from proxy_requests import proxy_requests<br>
 &emsp;&nbsp;r = proxy_requests.ProxyRequests("https://postman-echo.com/get?foo1=bar1&foo2=bar2")<br>
 &emsp;&nbsp;r.get()
+<br><br>
+This was developed on Ubuntu 16.04.4 LTS.
 <hr>
 <b>Author: James Loye Colley  04AUG2018</b><br><br>
 Example 1:<br>
