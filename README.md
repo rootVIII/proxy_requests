@@ -5,11 +5,7 @@ Then it recursively attempts to make a request if the initial request with a pro
 <br><br>
 Requirements: Python 3 and the requests module
 <br><br>
-JUST ADDED TO PYPI...    pip install proxy-requests (or pip3 install proxy-requests)
-<br><br>
 Runs on Linux and Windows-<b>may take a moment to run depending on current proxy</b>
-<br><br>
-python3 -m pip install --index-url https://test.pypi.org/simple/ proxy_requests
 <br><br>
 Pass it a fully qualified URL when initializing an instance
 <br><br>
