@@ -13,6 +13,10 @@ Either copy the code and put where you want it, or download via pip:
 <br>
 &emsp;&nbsp;from proxy_requests.proxy_requests import ProxyRequests
 <br><br>
+or if you need the Basic Auth subclass as well:
+<br><br>
+&emsp;&nbsp;from proxy_requests.proxy_requests import ProxyRequests, ProxyRequestsBasicAuth
+<br><br>
 If the above import statement is used, method calls will be identical to the ones shown below
 <br><br>
 Pass a fully qualified URL when initializing an instance
