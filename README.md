@@ -11,11 +11,11 @@ Either copy the code and put where you want it, or download via pip:
 <br><br>
 &emsp;&nbsp;pip3 install proxy-requests
 <br>
-&emsp;&nbsp;from proxy_requests import proxy_requests
+&emsp;&nbsp;from proxy_requests.proxy_requests import ProxyRequests
 <br><br>
-Just be aware that method calls may vary slightly than shown below depending on how you import the module
+If the above import statement is used, method calls will be identical to the ones shown below
 <br><br>
-Pass it a fully qualified URL when initializing an instance
+Pass a fully qualified URL when initializing an instance
 <br><br>
 The ProxyRequestBasicAuth subclass has get, post, post_with_headers, and post_file methods that will override the Parent methods
 <br><br>
@@ -54,12 +54,6 @@ The ProxyRequestBasicAuth subclass has get, post, post_with_headers, and post_fi
 &emsp;&nbsp;print(r.get_proxy_used())
 <br><br>
 The to_json() method is not intended to be used for a string of HTML
-<br><br>
-If downloaded via pip3, your method calls may look slightly different depending on your import statement:
-<br><br>
-&emsp;&nbsp;from proxy_requests import proxy_requests<br>
-&emsp;&nbsp;r = proxy_requests.ProxyRequests("https://postman-echo.com/get?foo1=bar1&foo2=bar2")<br>
-&emsp;&nbsp;r.get()
 <br><br>
 This was developed on Ubuntu 16.04.4 LTS.
 <hr>
