@@ -202,48 +202,12 @@ class ProxyRequestsBasicAuth(ProxyRequests):
 
 
 if __name__ == "__main__":
-    # ###### example GET ###### #
-    r = ProxyRequests("https://postman-echo.com/get?foo1=bar1&foo2=bar2")
-    r.get()
-    #
-    # ###### example POST ###### #
-    # r = ProxyRequests("https://postman-echo.com/post")
-    # r.post({"key1": "value1", "key2": "value2"})
-    #
-    # ###### example POST with headers: ###### #
-    # r = ProxyRequests("http://ptsv2.com/t/l4h0y-1533772770/post")
-    # r.set_headers({"name": "rootVIII", "secret_message": "7Yufs9KIfj33d"})
-    # r.post_with_headers({"key1": "value1", "key2": "value2"})
-    #
-    # ###### example POST file ###### #
-    # r = ProxyRequests("http://ptsv2.com/t/l4h0y-1533772770/post")
-    # r.set_file({'file': open('test.txt', 'rb')})
-    # r.post_file()
-    #
-    # ###### example GET with Basic Authentication: ###### #
-    # r = ProxyRequestsBasicAuth("https://postman-echo.com/basic-auth/", "postman", "password")
-    # r.get()
-    #
-    # ###### example POST with Basic Authentication ###### #
-    # r = ProxyRequestsBasicAuth("http://ptsv2.com/t/n25v8-1533857107/post", "username", "password")
-    # r.post({"key1": "value1", "key2": "value2"})
-
-    # ###### example POST with headers and  Basic Authentication ###### #
-    # r = ProxyRequestsBasicAuth("http://ptsv2.com/t/l4h0y-1533772770/post", "username", "password")
-    # r.set_headers({"name": "rootVIII", "secret_message": "7Yufs9KIfj33d"})
-    # r.post_with_headers({"key1": "value1", "key2": "value2"})
-    #
-    # ###### example POST file with Basic Authentication ###### #
-    # r = ProxyRequestsBasicAuth("http://ptsv2.com/t/l4h0y-1533772770/post", "username", "password")
-    # r.set_file({'file': open('test.txt', 'rb')})
-    # r.post_file()
-    print('\n')
+    # example post with headers
+    r = ProxyRequests("https://postman-echo.com/post")
+    r.set_headers({"name": "rootVIII", "secret_message": "7Yufs9KIfj33d"})
+    r.post_with_headers({"key1": "value1", "key2": "value2"})
     print(r)
-    print('\n')
     print(r.get_headers())
-    print('\n')
     print(r.get_status_code())
-    print('\n')
     # print(r.to_json())
-    print('\n')
     print(r.get_proxy_used())
