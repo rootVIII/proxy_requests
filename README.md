@@ -1,4 +1,4 @@
-## Python Proxy Requests: make an http GET/POST with a proxy scraped from https://www.sslproxies.org/
+## Python Proxy Requests | make an http GET/POST with a proxy scraped from https://www.sslproxies.org/
 pypi.org: https://pypi.org/project/proxy-requests/
 <br><br>
 The ProxyRequests class first scrapes proxies from the web
