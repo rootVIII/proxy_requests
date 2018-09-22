@@ -21,7 +21,7 @@ If the above import statement is used, method calls will be identical to the one
 The ProxyRequestBasicAuth subclass has get, post, post_with_headers, and post_file methods that will override the Parent methods.
 <br><br>
 <b>example GET:</b><br>
-&emsp;&nbsp;r = ProxyRequests("https://postman-echo.com/get?foo1=bar1&foo2=bar2")<br>
+&emsp;&nbsp;r = ProxyRequests("https://api.ipify.org")<br>
 &emsp;&nbsp;r.get()<br><br>
 <b>example POST:</b><br>
 &emsp;&nbsp;r = ProxyRequests("url here")<br>
