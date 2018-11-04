@@ -94,7 +94,11 @@ class ProxyRequests:
 
     # not intended for string or html... a string may work but should be for a json dict response
     def to_json(self):
-        return json.dumps(json.JSONDecoder().decode(self.request))
+        try:
+            json_resp = json.dumps(json.JSONDecoder().decode(self.request))
+        except:
+            return json.dumps({'error': 'No JSON Object could be decoded'})
+        return json_resp
 
     def get_headers(self):
         return self.headers
