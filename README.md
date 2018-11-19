@@ -29,59 +29,59 @@ The ProxyRequestBasicAuth subclass has get, post, post_with_headers, and post_fi
 
 <b>example GET:</b><br>
 <code>
-  r = ProxyRequests("https://api.ipify.org")
-  r.get()
+  r = ProxyRequests("https://api.ipify.org")<br>
+  r.get()<br>
 </code>
 
 <b>example POST:</b><br>
 <code>
-  r = ProxyRequests("url here")
-  r.post({"key1": "value1", "key2": "value2"})
+  r = ProxyRequests("url here")<br>
+  r.post({"key1": "value1", "key2": "value2"})<br>
 </code>
 
 <b>example POST with headers:</b><br>
 <code>
   r = ProxyRequests("url here")
-  r.set_headers({"name": "rootVIII", "secret_message": "7Yufs9KIfj33d"})
-  r.post_with_headers({"key1": "value1", "key2": "value2"})
+  r.set_headers({"name": "rootVIII", "secret_message": "7Yufs9KIfj33d"})<br>
+  r.post_with_headers({"key1": "value1", "key2": "value2"})<br>
 </code>
 
 <b>example POST FILE:</b><br>
 <code>
-  r = ProxyRequests("url here")
-  r.set_file({'file': open('test.txt', 'rb')})
-  r.post_file()
+  r = ProxyRequests("url here")<br>
+  r.set_file({'file': open('test.txt', 'rb')})<br>
+  r.post_file()<br>
 </code>
 
 <b>example GET with Basic Authentication:</b><br>
 <code>
-  r = ProxyRequestsBasicAuth("url here", "username", "password")
-  r.get()
+  r = ProxyRequestsBasicAuth("url here", "username", "password")<br>
+  r.get()<br>
 </code>
 
 <b>example post with Basic Authentication</b><br>
 <code>
-  r = ProxyRequestsBasicAuth("url here", "username", "password")
-  r.post({"key1": "value1", "key2": "value2"})
+  r = ProxyRequestsBasicAuth("url here", "username", "password")<br>
+  r.post({"key1": "value1", "key2": "value2"})<br>
 </code>
 
 <b>example post with headers & Basic Authentication</b><br>
 <code>
-  r = ProxyRequestsBasicAuth("url here", "username", "password")
+  r = ProxyRequestsBasicAuth("url here", "username", "password")<br>
   r.set_headers({"header_key": "header_value"})<br>
-  r.post_with_headers({"key1": "value1", "key2": "value2"})
+  r.post_with_headers({"key1": "value1", "key2": "value2"})<br>
 </code>
 
 <b>example POST FILE with Basic Authentication:</b><br>
 <code>
-  r = ProxyRequestsBasicAuth("url here", "username", "password")
-  r.set_file({'file': open('test.txt', 'rb')})
-  r.post_file()
+  r = ProxyRequestsBasicAuth("url here", "username", "password")<br>
+  r.set_file({'file': open('test.txt', 'rb')})<br>
+  r.post_file()<br>
   print(r)<br>
   print(r.get_headers())<br>
   print(r.get_status_code())<br>
   print(r.to_json())<br>
-  print(r.get_proxy_used())
+  print(r.get_proxy_used())<br>
 </code>
 <br><br>
 The to_json() method is not intended to be used for a string of HTML
