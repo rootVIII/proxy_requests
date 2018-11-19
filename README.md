@@ -15,9 +15,9 @@ pip3 install proxy-requests
 <code>
 from proxy_requests.proxy_requests import ProxyRequests
 </code>
-<br>
-or if you need the Basic Auth subclass as well:
 <br><br>
+or if you need the Basic Auth subclass as well:
+<br>
 <code>
 from proxy_requests.proxy_requests import ProxyRequests, ProxyRequestsBasicAuth
 </code>
