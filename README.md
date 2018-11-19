@@ -114,6 +114,8 @@ The ProxyRequestBasicAuth subclass has get, post, post_with_headers, and post_fi
 <code>
   r.post_file()
 </code>
+<br><br>
+<b>Response Methods:</b>
 <br>
 <code>
   print(r)
