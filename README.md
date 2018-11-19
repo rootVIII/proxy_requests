@@ -27,52 +27,52 @@ If the above import statement is used, method calls will be identical to the one
 The ProxyRequestBasicAuth subclass has get, post, post_with_headers, and post_file methods that will override the Parent methods.
 <br><br>
 
-<b>example GET:</b>
+<b>example GET:</b><br>
 <code>
   r = ProxyRequests("https://api.ipify.org")
   r.get()
 </code>
 
-<b>example POST:</b>
+<b>example POST:</b><br>
 <code>
   r = ProxyRequests("url here")
   r.post({"key1": "value1", "key2": "value2"})
 </code>
 
-<b>example POST with headers:</b>
+<b>example POST with headers:</b><br>
 <code>
-  r = ProxyRequests("url here")<br>
+  r = ProxyRequests("url here")
   r.set_headers({"name": "rootVIII", "secret_message": "7Yufs9KIfj33d"})
   r.post_with_headers({"key1": "value1", "key2": "value2"})
 </code>
 
-<b>example POST FILE:</b>
+<b>example POST FILE:</b><br>
 <code>
   r = ProxyRequests("url here")
   r.set_file({'file': open('test.txt', 'rb')})
   r.post_file()
 </code>
 
-<b>example GET with Basic Authentication:</b>
+<b>example GET with Basic Authentication:</b><br>
 <code>
   r = ProxyRequestsBasicAuth("url here", "username", "password")
   r.get()
 </code>
 
-<b>example post with Basic Authentication</b>
+<b>example post with Basic Authentication</b><br>
 <code>
   r = ProxyRequestsBasicAuth("url here", "username", "password")
   r.post({"key1": "value1", "key2": "value2"})
 </code>
 
-<b>example post with headers & Basic Authentication</b>
+<b>example post with headers & Basic Authentication</b><br>
 <code>
   r = ProxyRequestsBasicAuth("url here", "username", "password")
   r.set_headers({"header_key": "header_value"})<br>
   r.post_with_headers({"key1": "value1", "key2": "value2"})
 </code>
 
-<b>example POST FILE with Basic Authentication:</b>
+<b>example POST FILE with Basic Authentication:</b><br>
 <code>
   r = ProxyRequestsBasicAuth("url here", "username", "password")
   r.set_file({'file': open('test.txt', 'rb')})
