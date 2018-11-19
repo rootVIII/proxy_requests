@@ -44,65 +44,95 @@ The ProxyRequestBasicAuth subclass has get, post, post_with_headers, and post_fi
 <code>
   r.post({"key1": "value1", "key2": "value2"})
 </code>
-
+<br>
 <b>example POST with headers:</b>
 <code>
   r = ProxyRequests("url here")
 </code>
+<br>
 <code>
   r.set_headers({"name": "rootVIII", "secret_message": "7Yufs9KIfj33d"})
 </code>
+<br>
 <code>
   r.post_with_headers({"key1": "value1", "key2": "value2"})
 </code>
+<br>
 <b>example POST FILE:</b><br>
 <code>
   r = ProxyRequests("url here")
 </code>
+<br>
 <code>
   r.set_file({'file': open('test.txt', 'rb')})
 </code>
+<br>
 <code>
   r.post_file()
 </code>
-
+<br>
 <b>example GET with Basic Authentication:</b><br>
 <code>
   r = ProxyRequestsBasicAuth("url here", "username", "password")
 </code>
+<br>
 <code>
   r.get()
 </code>
-
+<br>
 <b>example post with Basic Authentication</b><br>
 <code>
   r = ProxyRequestsBasicAuth("url here", "username", "password")
 </code>
+<br>
 <code>
   r.post({"key1": "value1", "key2": "value2"})
 </code>
-
+<br>
 <b>example post with headers & Basic Authentication</b><br>
 <code>
   r = ProxyRequestsBasicAuth("url here", "username", "password")
 </code>
+<br>
 <code>
   r.set_headers({"header_key": "header_value"})
 </code>
+<br>
 <code>
   r.post_with_headers({"key1": "value1", "key2": "value2"})
 </code>
-
+<br>
 <b>example POST FILE with Basic Authentication:</b><br>
 <code>
   r = ProxyRequestsBasicAuth("url here", "username", "password")
+<code>
   r.set_file({'file': open('test.txt', 'rb')})
+</code>
+<br>
+<code>
   r.post_file()
+</code>
+<br>
+<code>
   print(r)
+</code>
+<br>
+<code>
   print(r.get_headers())
+</code>
+<br>
+<code>
   print(r.get_status_code())
+</code>
+<br>
+<code>
   print(r.to_json())
+</code>
+<br>
+<code>
   print(r.get_proxy_used())
+</code>
+<br>
 </code>
 <br><br>
 The to_json() method is not intended to be used for a string of HTML
