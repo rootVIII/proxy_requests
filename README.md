@@ -41,16 +41,16 @@ The ProxyRequestBasicAuth subclass has get, post, post_with_headers, and post_fi
 
 <b>example POST with headers:</b><br>
 <code>
-  r = ProxyRequests("url here")
+  r = ProxyRequests("url here")<br>
   r.set_headers({"name": "rootVIII", "secret_message": "7Yufs9KIfj33d"})<br>
   r.post_with_headers({"key1": "value1", "key2": "value2"})<br>
 </code>
 
 <b>example POST FILE:</b><br>
 <code>
-  r = ProxyRequests("url here")<br>
-  r.set_file({'file': open('test.txt', 'rb')})<br>
-  r.post_file()<br>
+  r = ProxyRequests("url here")<br><br>
+  r.set_file({'file': open('test.txt', 'rb')})<br><br>
+  r.post_file()<br><br>
 </code>
 
 <b>example GET with Basic Authentication:</b><br>
