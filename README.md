@@ -83,7 +83,7 @@ The ProxyRequestBasicAuth subclass has get, post, post_with_headers, and post_fi
   print(r.to_json())<br>
   print(r.get_proxy_used())
 </code>
-<br>
+<br><br>
 The to_json() method is not intended to be used for a string of HTML
 <br><br>
 This was developed on Ubuntu 16.04.4 LTS.
