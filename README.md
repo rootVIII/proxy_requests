@@ -31,14 +31,16 @@ The ProxyRequestBasicAuth subclass has get, post, post_with_headers, and post_fi
 <code>
   r = ProxyRequests("https://api.ipify.org")
 </code>
+<br>
 <code>
   r.get()
 </code>
-
+<br>
 <b>example POST:</b><br>
 <code>
   r = ProxyRequests("url here")
 </code>
+<br>
 <code>
   r.post({"key1": "value1", "key2": "value2"})
 </code>
