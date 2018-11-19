@@ -105,6 +105,8 @@ The ProxyRequestBasicAuth subclass has get, post, post_with_headers, and post_fi
 <b>example POST FILE with Basic Authentication:</b><br>
 <code>
   r = ProxyRequestsBasicAuth("url here", "username", "password")
+</code>
+<br>
 <code>
   r.set_file({'file': open('test.txt', 'rb')})
 </code>
