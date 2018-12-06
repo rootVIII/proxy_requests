@@ -24,7 +24,7 @@ from proxy_requests.proxy_requests import ProxyRequests, ProxyRequestsBasicAuth
 <br><br>
 If the above import statement is used, method calls will be identical to the ones shown below. Pass a fully qualified URL when initializing an instance.
 <br><br>
-The ProxyRequestBasicAuth subclass has get, post, post_with_headers, and post_file methods that will override the Parent methods.
+The ProxyRequestBasicAuth subclass has get(), get_with_headers(), post(), post_with_headers(), and post_file() methods that will override the Parent methods.
 <br><br>
 
 <b>example GET:</b><br>
