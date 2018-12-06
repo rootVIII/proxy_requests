@@ -97,6 +97,23 @@ r.get_with_headers()
   r.get()
 </code>
 <br>
+<b>example GET with headers & Basic Authentication:</b><br>
+<code>
+h = {"User-Agent": "NCSA Mosaic/3.0 (Windows 95)"}
+</code>
+<br>
+<code>
+r = ProxyRequestsBasicAuth("url here", "username", "password")
+</code>
+<br>
+<code>
+r.set_headers(h)
+</code>
+<br>
+<code>
+r.get_with_headers()
+</code>
+<br>
 <b>example post with Basic Authentication</b><br>
 <code>
   r = ProxyRequestsBasicAuth("url here", "username", "password")
