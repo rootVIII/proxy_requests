@@ -163,10 +163,10 @@ class ProxyRequestsBasicAuth(ProxyRequests):
             proxies = {"http": "http://" + current_socket, "https": "https://" + current_socket}
             try:
                 request = requests.get(self.url,
-                                        auth=(self.username, self.password),
-                                        timeout=3.0,
-                                        proxies=proxies,
-                                        headers=self.headers)
+                                       auth=(self.username, self.password),
+                                       timeout=3.0,
+                                       proxies=proxies,
+                                       headers=self.headers)
                 self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
