@@ -40,6 +40,20 @@ class ProxyRequests:
                 print('working...')
                 self.get()
 
+    def get_with_headers(self):
+        if len(self.sockets) > 0:
+            current_socket = self.sockets.pop(0)
+            proxies = {"http": "http://" + current_socket, "https": "https://" + current_socket}
+            try:
+                request = requests.get(self.url, timeout=3.0, proxies=proxies, headers=self.headers)
+                self.request = request.text
+                self.headers = request.headers
+                self.status_code = request.status_code
+                self.proxy_used = current_socket
+            except:
+                print('working...')
+                self.get_with_headers()
+
     # recursively try proxy sockets until successful POST
     def post(self, data):
         if len(self.sockets) > 0:

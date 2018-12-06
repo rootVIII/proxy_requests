@@ -36,6 +36,23 @@ The ProxyRequestBasicAuth subclass has get, post, post_with_headers, and post_fi
   r.get()
 </code>
 <br>
+<b>example GET with headers:</b><br>
+<code>
+h = {"User-Agent": "NCSA Mosaic/3.0 (Windows 95)"}
+</code>
+<br>
+<code>
+r = ProxyRequests("https://https://www.roboshout.com")
+</code>
+<br>
+<code>
+r.set_headers(h)
+</code>
+<br>
+<code>
+r.get_with_headers()
+</code>
+<br>
 <b>example POST:</b><br>
 <code>
   r = ProxyRequests("url here")
