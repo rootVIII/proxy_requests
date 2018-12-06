@@ -1,4 +1,8 @@
 ## Python Proxy Requests | make an http GET/POST with a proxy scraped from https://www.sslproxies.org/
+<<<<<<< HEAD
+=======
+pypi.org: https://pypi.org/project/proxy-requests/
+>>>>>>> 77178484bfa1583118ad30c4dddb031b36194da9
 <br><br>
 The ProxyRequests class first scrapes proxies from the web. Then it recursively attempts to make a request if the initial request with a proxy is unsuccessful. System Requirements: Python 3 and the requests module.
 <br> Youtube Demo:  https://youtu.be/isxJeqo_sBA
@@ -20,18 +24,34 @@ or if you need the Basic Auth subclass as well:
 <code>
 from proxy_requests.proxy_requests import ProxyRequests, ProxyRequestsBasicAuth
 </code>
+<<<<<<< HEAD
 <br><br>
 If the above import statement is used, method calls will be identical to the ones shown below. Pass a fully qualified URL when initializing an instance.
 <br><br>
 The ProxyRequestBasicAuth subclass has get, get_with_headers, post, post_with_headers, and post_file methods that will override the Parent methods.
+=======
+>>>>>>> 77178484bfa1583118ad30c4dddb031b36194da9
 <br><br>
+If the above import statement is used, method calls will be identical to the ones shown below. Pass a fully qualified URL when initializing an instance.
+<br><br>
+The ProxyRequestBasicAuth subclass has get, post, post_with_headers, and post_file methods that will override the Parent methods.
+<br><br>
+
 <b>example GET:</b><br>
 <code>
+<<<<<<< HEAD
 r = ProxyRequests("https://api.ipify.org")
 </code>
 <br>
 <code>
 r.get()
+=======
+  r = ProxyRequests("https://api.ipify.org")
+</code>
+<br>
+<code>
+  r.get()
+>>>>>>> 77178484bfa1583118ad30c4dddb031b36194da9
 </code>
 <br>
 <b>example GET with headers:</b><br>
@@ -53,15 +73,24 @@ r.get_with_headers()
 <br>
 <b>example POST:</b><br>
 <code>
+<<<<<<< HEAD
 r = ProxyRequests("url here")
 </code>
 <br>
 <code>
 r.post({"key1": "value1", "key2": "value2"})
+=======
+  r = ProxyRequests("url here")
+</code>
+<br>
+<code>
+  r.post({"key1": "value1", "key2": "value2"})
+>>>>>>> 77178484bfa1583118ad30c4dddb031b36194da9
 </code>
 <br>
 <b>example POST with headers:</b>
 <code>
+<<<<<<< HEAD
 r = ProxyRequests("url here")
 </code>
 <br>
@@ -71,10 +100,22 @@ r.set_headers({"name": "rootVIII", "secret_message": "7Yufs9KIfj33d"})
 <br>
 <code>
 r.post_with_headers({"key1": "value1", "key2": "value2"})
+=======
+  r = ProxyRequests("url here")
+</code>
+<br>
+<code>
+  r.set_headers({"name": "rootVIII", "secret_message": "7Yufs9KIfj33d"})
+</code>
+<br>
+<code>
+  r.post_with_headers({"key1": "value1", "key2": "value2"})
+>>>>>>> 77178484bfa1583118ad30c4dddb031b36194da9
 </code>
 <br>
 <b>example POST FILE:</b><br>
 <code>
+<<<<<<< HEAD
 r = ProxyRequests("url here")
 </code>
 <br>
@@ -84,10 +125,22 @@ r.set_file({'file': open('test.txt', 'rb')})
 <br>
 <code>
 r.post_file()
+=======
+  r = ProxyRequests("url here")
+</code>
+<br>
+<code>
+  r.set_file({'file': open('test.txt', 'rb')})
+</code>
+<br>
+<code>
+  r.post_file()
+>>>>>>> 77178484bfa1583118ad30c4dddb031b36194da9
 </code>
 <br>
 <b>example GET with Basic Authentication:</b><br>
 <code>
+<<<<<<< HEAD
 r = ProxyRequestsBasicAuth("url here", "username", "password")
 </code>
 <br>
@@ -110,19 +163,35 @@ r.set_headers(h)
 <br>
 <code>
 r.get_with_headers()
+=======
+  r = ProxyRequestsBasicAuth("url here", "username", "password")
+</code>
+<br>
+<code>
+  r.get()
+>>>>>>> 77178484bfa1583118ad30c4dddb031b36194da9
 </code>
 <br>
 <b>example post with Basic Authentication</b><br>
 <code>
+<<<<<<< HEAD
 r = ProxyRequestsBasicAuth("url here", "username", "password")
 </code>
 <br>
 <code>
 r.post({"key1": "value1", "key2": "value2"})
+=======
+  r = ProxyRequestsBasicAuth("url here", "username", "password")
+</code>
+<br>
+<code>
+  r.post({"key1": "value1", "key2": "value2"})
+>>>>>>> 77178484bfa1583118ad30c4dddb031b36194da9
 </code>
 <br>
 <b>example post with headers & Basic Authentication</b><br>
 <code>
+<<<<<<< HEAD
 r = ProxyRequestsBasicAuth("url here", "username", "password")
 </code>
 <br>
@@ -132,10 +201,22 @@ r.set_headers({"header_key": "header_value"})
 <br>
 <code>
 r.post_with_headers({"key1": "value1", "key2": "value2"})
+=======
+  r = ProxyRequestsBasicAuth("url here", "username", "password")
+</code>
+<br>
+<code>
+  r.set_headers({"header_key": "header_value"})
+</code>
+<br>
+<code>
+  r.post_with_headers({"key1": "value1", "key2": "value2"})
+>>>>>>> 77178484bfa1583118ad30c4dddb031b36194da9
 </code>
 <br>
 <b>example POST FILE with Basic Authentication:</b><br>
 <code>
+<<<<<<< HEAD
 r = ProxyRequestsBasicAuth("url here", "username", "password")
 </code>
 <br>
@@ -145,11 +226,23 @@ r.set_file({'file': open('test.txt', 'rb')})
 <br>
 <code>
 r.post_file()
+=======
+  r = ProxyRequestsBasicAuth("url here", "username", "password")
+</code>
+<br>
+<code>
+  r.set_file({'file': open('test.txt', 'rb')})
+</code>
+<br>
+<code>
+  r.post_file()
+>>>>>>> 77178484bfa1583118ad30c4dddb031b36194da9
 </code>
 <br><br>
 <b>Response Methods:</b>
 <br>
 <code>
+<<<<<<< HEAD
 print(r)
 </code>
 <br>
@@ -167,6 +260,25 @@ print(r.to_json())
 <br>
 <code>
 print(r.get_proxy_used())
+=======
+  print(r)
+</code>
+<br>
+<code>
+  print(r.get_headers())
+</code>
+<br>
+<code>
+  print(r.get_status_code())
+</code>
+<br>
+<code>
+  print(r.to_json())
+</code>
+<br>
+<code>
+  print(r.get_proxy_used())
+>>>>>>> 77178484bfa1583118ad30c4dddb031b36194da9
 </code>
 <br>
 </code>
