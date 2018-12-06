@@ -73,7 +73,6 @@ r.get_with_headers()
 <br>
 <b>example POST:</b><br>
 <code>
-<<<<<<< HEAD
 r = ProxyRequests("url here")
 </code>
 <br>
@@ -85,12 +84,11 @@ r.post({"key1": "value1", "key2": "value2"})
 <br>
 <code>
   r.post({"key1": "value1", "key2": "value2"})
->>>>>>> 77178484bfa1583118ad30c4dddb031b36194da9
 </code>
 <br>
 <b>example POST with headers:</b>
 <code>
-<<<<<<< HEAD
+<<<<<<< HEA
 r = ProxyRequests("url here")
 </code>
 <br>
@@ -110,7 +108,6 @@ r.post_with_headers({"key1": "value1", "key2": "value2"})
 <br>
 <code>
   r.post_with_headers({"key1": "value1", "key2": "value2"})
->>>>>>> 77178484bfa1583118ad30c4dddb031b36194da9
 </code>
 <br>
 <b>example POST FILE:</b><br>
@@ -125,7 +122,6 @@ r.set_file({'file': open('test.txt', 'rb')})
 <br>
 <code>
 r.post_file()
-=======
   r = ProxyRequests("url here")
 </code>
 <br>
@@ -135,7 +131,6 @@ r.post_file()
 <br>
 <code>
   r.post_file()
->>>>>>> 77178484bfa1583118ad30c4dddb031b36194da9
 </code>
 <br>
 <b>example GET with Basic Authentication:</b><br>
@@ -163,35 +158,29 @@ r.set_headers(h)
 <br>
 <code>
 r.get_with_headers()
-=======
   r = ProxyRequestsBasicAuth("url here", "username", "password")
 </code>
 <br>
 <code>
   r.get()
->>>>>>> 77178484bfa1583118ad30c4dddb031b36194da9
 </code>
 <br>
 <b>example post with Basic Authentication</b><br>
 <code>
-<<<<<<< HEAD
 r = ProxyRequestsBasicAuth("url here", "username", "password")
 </code>
 <br>
 <code>
 r.post({"key1": "value1", "key2": "value2"})
-=======
   r = ProxyRequestsBasicAuth("url here", "username", "password")
 </code>
 <br>
 <code>
   r.post({"key1": "value1", "key2": "value2"})
->>>>>>> 77178484bfa1583118ad30c4dddb031b36194da9
 </code>
 <br>
 <b>example post with headers & Basic Authentication</b><br>
 <code>
-<<<<<<< HEAD
 r = ProxyRequestsBasicAuth("url here", "username", "password")
 </code>
 <br>
@@ -201,7 +190,6 @@ r.set_headers({"header_key": "header_value"})
 <br>
 <code>
 r.post_with_headers({"key1": "value1", "key2": "value2"})
-=======
   r = ProxyRequestsBasicAuth("url here", "username", "password")
 </code>
 <br>
