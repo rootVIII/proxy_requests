@@ -63,6 +63,7 @@ r.get_with_headers()
 </code>
 <br>
 <b>example POST with headers:</b>
+<br>
 <code>
   r = ProxyRequests("url here")
 </code>
@@ -172,6 +173,13 @@ r.get_with_headers()
 </code>
 <br>
 </code>
+<br>
+<b>To write response to a file (including an image):</b><br>
+<br>
+<code>
+r.response_to_file()
+</code>
+<br>
 <br><br>
 The to_json() method is not intended to be used for a string of HTML
 <br><br>
