@@ -35,6 +35,7 @@ class ProxyRequests:
                 self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
+                self.raw_content = request.content
                 self.proxy_used = current_socket
             except:
                 print('working...')
@@ -49,6 +50,7 @@ class ProxyRequests:
                 self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
+                self.raw_content = request.content
                 self.proxy_used = current_socket
             except:
                 print('working...')
@@ -64,6 +66,7 @@ class ProxyRequests:
                 self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
+                self.raw_content = request.content
                 self.proxy_used = current_socket
             except:
                 print('working...')
@@ -83,6 +86,7 @@ class ProxyRequests:
                 self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
+                self.raw_content = request.content
                 self.proxy_used = current_socket
             except:
                 print('working...')
@@ -101,6 +105,7 @@ class ProxyRequests:
                 self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
+                self.raw_content = request.content
                 self.proxy_used = current_socket
             except:
                 print('working...')
@@ -129,6 +134,13 @@ class ProxyRequests:
     def get_proxy_used(self):
         return str(self.proxy_used)
 
+    def response_to_file(self):
+        from datetime import datetime
+        file_name = 'proxy_requests_'
+        file_name += datetime.now().strftime('%Y%m%d%H%M%S%f')[:-3]
+        with open(file_name, 'wb') as file_out:
+            file_out.write(self.raw_content)
+
     def __str__(self):
         return str(self.request)
 
@@ -152,6 +164,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                 self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
+                self.raw_content = request.content
                 self.proxy_used = current_socket
             except:
                 print('working...')
@@ -170,6 +183,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                 self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
+                self.raw_content = request.content
                 self.proxy_used = current_socket
             except:
                 print('working...')
@@ -189,6 +203,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                 self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
+                self.raw_content = request.content
                 self.proxy_used = current_socket
             except:
                 print('working...')
@@ -209,6 +224,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                 self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
+                self.raw_content = request.content
                 self.proxy_used = current_socket
             except:
                 print('working...')
@@ -228,6 +244,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                 self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
+                self.raw_content = request.content
                 self.proxy_used = current_socket
             except:
                 print('working...')
