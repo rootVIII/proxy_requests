@@ -177,9 +177,14 @@ r.get_with_headers()
 <b>To write response to a file (including an image):</b>
 <br>
 <code>
-r.response_to_file()
+  r.response_to_file()
 </code>
 <br>
+<b>Or if you want to write raw content yourself: </b>
+<br>
+<code>
+  r.get_raw()
+</code>
 <br><br>
 The to_json() method is not intended to be used for a string of HTML
 <br><br>

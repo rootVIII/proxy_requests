@@ -41,6 +41,7 @@ class ProxyRequests:
                 print('working...')
                 self.get()
 
+    # recursively try proxy sockets until successful GET with headers
     def get_with_headers(self):
         if len(self.sockets) > 0:
             current_socket = self.sockets.pop(0)
@@ -141,6 +142,9 @@ class ProxyRequests:
         with open(file_name, 'wb') as file_out:
             file_out.write(self.raw_content)
 
+    def get_raw(self):
+        return self.raw_content
+
     def __str__(self):
         return str(self.request)
 
@@ -170,6 +174,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                 print('working...')
                 self.get()
 
+    # recursively try proxy sockets until successful GET with headers (overrided method)
     def get_with_headers(self):
         if len(self.sockets) > 0:
             current_socket = self.sockets.pop(0)
