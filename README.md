@@ -115,7 +115,7 @@ r.set_headers(h)
 r.get_with_headers()
 </code>
 <br>
-<b>example post with Basic Authentication</b><br>
+<b>example POST with Basic Authentication</b><br>
 <code>
   r = ProxyRequestsBasicAuth("url here", "username", "password")
 </code>
@@ -124,7 +124,7 @@ r.get_with_headers()
   r.post({"key1": "value1", "key2": "value2"})
 </code>
 <br>
-<b>example post with headers & Basic Authentication</b><br>
+<b>example POSTwith headers & Basic Authentication</b><br>
 <code>
   r = ProxyRequestsBasicAuth("url here", "username", "password")
 </code>
