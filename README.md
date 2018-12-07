@@ -152,17 +152,25 @@ r.get_with_headers()
 <br><br>
 <b>Response Methods:</b>
 <br>
+  <b>Returns a string:</b>
+<br>
 <code>
   print(r)
 </code>
+<br>
+<b>Get the response headers</b>
 <br>
 <code>
   print(r.get_headers())
 </code>
 <br>
+<b>Get the status code:</b>
+<br>
 <code>
   print(r.get_status_code())
 </code>
+<br>
+<b>Get the proxy that was used to make the request:</b>
 <br>
 <code>
   print(r.get_proxy_used())

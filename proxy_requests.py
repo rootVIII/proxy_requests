@@ -8,6 +8,7 @@ class ProxyRequests:
     def __init__(self, url):
         self.sockets = []
         self.url = url
+        self.request = ''
         self.proxy = ''
         self.headers = {}
         self.file_dict = {}
@@ -31,6 +32,7 @@ class ProxyRequests:
             proxies = {"http": "http://" + current_socket, "https": "https://" + current_socket}
             try:
                 request = requests.get(self.url, timeout=3.0, proxies=proxies)
+                self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
                 self.raw_content = request.content
@@ -46,6 +48,7 @@ class ProxyRequests:
             proxies = {"http": "http://" + current_socket, "https": "https://" + current_socket}
             try:
                 request = requests.get(self.url, timeout=3.0, proxies=proxies, headers=self.headers)
+                self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
                 self.raw_content = request.content
@@ -61,6 +64,7 @@ class ProxyRequests:
             proxies = {"http": "http://" + current_socket, "https": "https://" + current_socket}
             try:
                 request = requests.post(self.url, json=data, timeout=3.0, proxies=proxies)
+                self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
                 self.raw_content = request.content
@@ -80,6 +84,7 @@ class ProxyRequests:
                                         timeout=3.0,
                                         headers=self.headers,
                                         proxies=proxies)
+                self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
                 self.raw_content = request.content
@@ -98,6 +103,7 @@ class ProxyRequests:
                                         files=self.file_dict,
                                         timeout=3.0,
                                         proxies=proxies)
+                self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
                 self.raw_content = request.content
@@ -132,7 +138,7 @@ class ProxyRequests:
         return self.raw_content
 
     def __str__(self):
-        return str(self.raw_content)
+        return str(self.request)
 
 
 class ProxyRequestsBasicAuth(ProxyRequests):
@@ -151,6 +157,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                                        auth=(self.username, self.password),
                                        timeout=3.0,
                                        proxies=proxies)
+                self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
                 self.raw_content = request.content
@@ -170,6 +177,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                                        timeout=3.0,
                                        proxies=proxies,
                                        headers=self.headers)
+                self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
                 self.raw_content = request.content
@@ -189,6 +197,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                                         auth=(self.username, self.password),
                                         timeout=3.0,
                                         proxies=proxies)
+                self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
                 self.raw_content = request.content
@@ -209,6 +218,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                                         timeout=3.0,
                                         headers=self.headers,
                                         proxies=proxies)
+                self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
                 self.raw_content = request.content
@@ -228,6 +238,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                                         auth=(self.username, self.password),
                                         timeout=3.0,
                                         proxies=proxies)
+                self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
                 self.raw_content = request.content
@@ -237,7 +248,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                 self.post_file()
 
     def __str__(self):
-        return str(self.raw_content)
+        return str(self.request)
 
 
 if __name__ == "__main__":
