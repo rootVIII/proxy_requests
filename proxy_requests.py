@@ -267,5 +267,4 @@ if __name__ == "__main__":
     print(r)
     print(r.get_headers())
     print(r.get_status_code())
-    # print(r.to_json())
     print(r.get_proxy_used())

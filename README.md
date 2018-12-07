@@ -192,6 +192,6 @@ This was developed on Ubuntu 16.04.4 LTS.
 <hr>
 <b>Author: James Loye Colley  04AUG2018</b><br><br>
 <br>
-<img src="https://github.com/rootVIII/proxy_requests/blob/master/example1.png" alt="example1" height="675" width="950"><hr>
-<img src="https://github.com/rootVIII/proxy_requests/blob/master/example2.png" alt="example1" height="675" width="950"><hr>
+<img src="https://github.com/rootVIII/proxy_requests/blob/master/ex1.png" alt="example1" height="675" width="950"><hr>
+<img src="https://github.com/rootVIII/proxy_requests/blob/master/ex2.png" alt="example1" height="675" width="950"><hr>
 
