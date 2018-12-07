@@ -174,7 +174,7 @@ r.get_with_headers()
 <br>
 </code>
 <br>
-<b>To write response to a file (including an image):</b>
+<b>To write response a to a file (including an image):</b>
 <br>
 <code>
   r.response_to_file()
