@@ -191,7 +191,7 @@ The to_json() method is not intended to be used for a string of HTML
 This was developed on Ubuntu 16.04.4 LTS.
 <hr>
 <b>Author: James Loye Colley  04AUG2018</b><br><br>
-Example 1:<br>
+<br>
 <img src="https://github.com/rootVIII/proxy_requests/blob/master/example1.png" alt="example1" height="675" width="950"><hr>
 <img src="https://github.com/rootVIII/proxy_requests/blob/master/example2.png" alt="example1" height="675" width="950"><hr>
 
