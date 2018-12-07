@@ -193,5 +193,3 @@ This was developed on Ubuntu 16.04.4 LTS.
 <b>Author: James Loye Colley  04AUG2018</b><br><br>
 Example 1:<br>
 <img src="https://github.com/rootVIII/proxy_requests/blob/master/example.png" alt="example1" height="675" width="950"><hr>
-Example 2:<br>
-<img src="https://github.com/rootVIII/proxy_requests/blob/master/example_post_with_headers.png" alt="example2" height="1100" width="950">
