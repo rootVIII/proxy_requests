@@ -150,8 +150,8 @@ r.get_with_headers()
   r.post_file()
 </code>
 <br><br>
-<b>Response Methods:</b>
-<br>
+##Response Methods:
+<br><br>
   <b>Returns a string:</b>
 <br>
 <code>
