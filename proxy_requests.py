@@ -9,13 +9,14 @@ class ProxyRequests:
     def __init__(self, url):
         self.sockets = []
         self.url = url
-        self.proxy = ""
-        self.request = ""
+        self.proxy = ''
+        self.request = ''
         self.headers = {}
         self.file_dict = {}
         self.__acquire_sockets()
-        self.status_code = ""
-        self.proxy_used = ""
+        self.status_code = ''
+        self.proxy_used = ''
+        self.raw_content = ''
 
     # get a list of sockets from sslproxies.org
     def __acquire_sockets(self):
