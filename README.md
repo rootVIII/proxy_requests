@@ -42,7 +42,7 @@ h = {"User-Agent": "NCSA Mosaic/3.0 (Windows 95)"}
 </code>
 <br>
 <code>
-r = ProxyRequests("https://https://www.roboshout.com")
+r = ProxyRequests("url here")
 </code>
 <br>
 <code>
