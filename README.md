@@ -158,7 +158,7 @@ r.get_with_headers()
   print(r)
 </code>
 <br>
-<b>Get the response headers</b>
+<b>Get the response headers:</b>
 <br>
 <code>
   print(r.get_headers())
