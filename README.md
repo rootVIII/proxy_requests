@@ -158,6 +158,12 @@ r.get_with_headers()
   print(r)
 </code>
 <br>
+<b>Or if you want the raw content as bytes: </b>
+<br>
+<code>
+  r.get_raw()
+</code>
+<br>
 <b>Get the response headers:</b>
 <br>
 <code>
@@ -182,12 +188,6 @@ r.get_with_headers()
 <br>
 <code>
   r.response_to_file()
-</code>
-<br>
-<b>Or if you want to write raw content yourself: </b>
-<br>
-<code>
-  r.get_raw()
 </code>
 <br>
 <b>Load your response to JSON: </b>
