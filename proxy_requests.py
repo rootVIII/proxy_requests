@@ -1,7 +1,6 @@
 #! /usr/bin/python3
 import requests
 import re
-import json
 from requests.auth import HTTPBasicAuth
 
 
@@ -10,7 +9,6 @@ class ProxyRequests:
         self.sockets = []
         self.url = url
         self.proxy = ''
-        self.request = ''
         self.headers = {}
         self.file_dict = {}
         self.__acquire_sockets()
@@ -33,7 +31,6 @@ class ProxyRequests:
             proxies = {"http": "http://" + current_socket, "https": "https://" + current_socket}
             try:
                 request = requests.get(self.url, timeout=3.0, proxies=proxies)
-                self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
                 self.raw_content = request.content
@@ -49,7 +46,6 @@ class ProxyRequests:
             proxies = {"http": "http://" + current_socket, "https": "https://" + current_socket}
             try:
                 request = requests.get(self.url, timeout=3.0, proxies=proxies, headers=self.headers)
-                self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
                 self.raw_content = request.content
@@ -65,7 +61,6 @@ class ProxyRequests:
             proxies = {"http": "http://" + current_socket, "https": "https://" + current_socket}
             try:
                 request = requests.post(self.url, json=data, timeout=3.0, proxies=proxies)
-                self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
                 self.raw_content = request.content
@@ -85,7 +80,6 @@ class ProxyRequests:
                                         timeout=3.0,
                                         headers=self.headers,
                                         proxies=proxies)
-                self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
                 self.raw_content = request.content
@@ -104,7 +98,6 @@ class ProxyRequests:
                                         files=self.file_dict,
                                         timeout=3.0,
                                         proxies=proxies)
-                self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
                 self.raw_content = request.content
@@ -112,14 +105,6 @@ class ProxyRequests:
             except:
                 print('working...')
                 self.post_file()
-
-    # not intended for string or html... a string may work but should be for a json dict response
-    def to_json(self):
-        try:
-            json_resp = json.dumps(json.JSONDecoder().decode(self.request))
-        except:
-            return json.dumps({'error': 'No JSON Object could be decoded'})
-        return json_resp
 
     def get_headers(self):
         return self.headers
@@ -147,7 +132,7 @@ class ProxyRequests:
         return self.raw_content
 
     def __str__(self):
-        return str(self.request)
+        return str(self.raw_content)
 
 
 class ProxyRequestsBasicAuth(ProxyRequests):
@@ -166,7 +151,6 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                                        auth=(self.username, self.password),
                                        timeout=3.0,
                                        proxies=proxies)
-                self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
                 self.raw_content = request.content
@@ -186,7 +170,6 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                                        timeout=3.0,
                                        proxies=proxies,
                                        headers=self.headers)
-                self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
                 self.raw_content = request.content
@@ -206,7 +189,6 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                                         auth=(self.username, self.password),
                                         timeout=3.0,
                                         proxies=proxies)
-                self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
                 self.raw_content = request.content
@@ -227,7 +209,6 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                                         timeout=3.0,
                                         headers=self.headers,
                                         proxies=proxies)
-                self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
                 self.raw_content = request.content
@@ -247,7 +228,6 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                                         auth=(self.username, self.password),
                                         timeout=3.0,
                                         proxies=proxies)
-                self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
                 self.raw_content = request.content
@@ -257,7 +237,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                 self.post_file()
 
     def __str__(self):
-        return str(self.request)
+        return str(self.raw_content)
 
 
 if __name__ == "__main__":

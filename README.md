@@ -165,10 +165,6 @@ r.get_with_headers()
 </code>
 <br>
 <code>
-  print(r.to_json())
-</code>
-<br>
-<code>
   print(r.get_proxy_used())
 </code>
 <br>
@@ -185,8 +181,24 @@ r.get_with_headers()
 <code>
   r.get_raw()
 </code>
-<br><br>
-The to_json() method is not intended to be used for a string of HTML
+<br>
+<b>Load your response to JSON: </b>
+<br>
+<code>
+  import json
+</code>
+<br>
+<code>
+  r = ProxyRequests(url)
+</code>
+<br>
+<code>
+  r.get()
+</code>
+<br>
+<code>
+  json.loads(r.get_raw().decode())
+</code>
 <br><br>
 This was developed on Ubuntu 16.04.4 LTS.
 <hr>
