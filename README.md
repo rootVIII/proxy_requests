@@ -172,13 +172,14 @@ r.get_with_headers()
   r.post_file()
 </code>
 <br>
-<b>example POST FILE with headers & Basic Authentication:</b><br>
-<code>
-  r = ProxyRequestsBasicAuth("url here", "username", "password")
-</code>
+<b>example POST FILE with headers & Basic Authentication:</b>
 <br>
 <code>
 h = {"User-Agent": "NCSA Mosaic/3.0 (Windows 95)"}
+</code>
+<br>
+<code>
+  r = ProxyRequestsBasicAuth("url here", "username", "password")
 </code>
 <br>
 <code>
