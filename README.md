@@ -178,6 +178,7 @@ r.get_with_headers()
 </code>
 <br>
 h = {"User-Agent": "NCSA Mosaic/3.0 (Windows 95)"}
+<br>
 <code>
   r.set_headers(h)
 </code>
