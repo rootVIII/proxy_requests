@@ -8,12 +8,11 @@ class ProxyRequests:
     def __init__(self, url):
         self.sockets = []
         self.url = url
-        self.request, self.proxy, self.proxy_used, self.raw_content = '', '', '', ''
-        self.status_code = 0
-        self.headers = {}
-        self.file_dict = {}
+        self.request, self.proxy = '', ''
+        self.proxy_used, self.raw_content = '', ''
+        self.status_code, self.try_count = 0, 15
+        self.headers, self.file_dict = {}, {}
         self.__acquire_sockets()
-
 
     # get a list of sockets from sslproxies.org
     def __acquire_sockets(self):
@@ -23,11 +22,19 @@ class ProxyRequests:
         for socket_str in revised_list:
             self.sockets.append(socket_str[:-5].replace("</td>", ":"))
 
+    def __try_count_succeeded(self):
+        message = "Unable to make proxied request. "
+        message += "Please check the validity of your URL."
+        print(message)
+
     # recursively try proxy sockets until successful GET
     def get(self):
-        if len(self.sockets) > 0:
+        if len(self.sockets) > 0 and self.try_count > 0:
             current_socket = self.sockets.pop(0)
-            proxies = {"http": "http://" + current_socket, "https": "https://" + current_socket}
+            proxies = {
+                "http": "http://" + current_socket,
+                "https": "https://" + current_socket
+            }
             try:
                 request = requests.get(
                     self.url,
@@ -40,14 +47,19 @@ class ProxyRequests:
                 self.raw_content = request.content
                 self.proxy_used = current_socket
             except:
-                print('working...')
+                self.try_count -= 1
                 self.get()
+        else:
+            self.__try_count_succeeded()
 
     # recursively try proxy sockets until successful GET with headers
     def get_with_headers(self):
-        if len(self.sockets) > 0:
+        if len(self.sockets) > 0 and self.try_count > 0:
             current_socket = self.sockets.pop(0)
-            proxies = {"http": "http://" + current_socket, "https": "https://" + current_socket}
+            proxies = {
+                "http": "http://" + current_socket,
+                "https": "https://" + current_socket
+            }
             try:
                 request = requests.get(
                     self.url,
@@ -61,14 +73,19 @@ class ProxyRequests:
                 self.raw_content = request.content
                 self.proxy_used = current_socket
             except:
-                print('working...')
+                self.try_count -= 1
                 self.get_with_headers()
+        else:
+            self.__try_count_succeeded()
 
     # recursively try proxy sockets until successful POST
     def post(self, data):
-        if len(self.sockets) > 0:
+        if len(self.sockets) > 0 and self.try_count > 0:
             current_socket = self.sockets.pop(0)
-            proxies = {"http": "http://" + current_socket, "https": "https://" + current_socket}
+            proxies = {
+                "http": "http://" + current_socket,
+                "https": "https://" + current_socket
+            }
             try:
                 request = requests.post(
                     self.url,
@@ -82,14 +99,19 @@ class ProxyRequests:
                 self.raw_content = request.content
                 self.proxy_used = current_socket
             except:
-                print('working...')
+                self.try_count -= 1
                 self.post(data)
+        else:
+            self.__try_count_succeeded()
 
     # recursively try proxy sockets until successful POST with headers
     def post_with_headers(self, data):
-        if len(self.sockets) > 0:
+        if len(self.sockets) > 0 and self.try_count > 0:
             current_socket = self.sockets.pop(0)
-            proxies = {"http": "http://" + current_socket, "https": "https://" + current_socket}
+            proxies = {
+                "http": "http://" + current_socket,
+                "https": "https://" + current_socket
+            }
             try:
                 request = requests.post(
                     self.url,
@@ -104,14 +126,19 @@ class ProxyRequests:
                 self.raw_content = request.content
                 self.proxy_used = current_socket
             except:
-                print('working...')
+                self.try_count -= 1
                 self.post_with_headers(data)
+        else:
+            self.__try_count_succeeded()
 
     # recursively try proxy sockets until successful POST with file
     def post_file(self):
-        if len(self.sockets) > 0:
+        if len(self.sockets) > 0 and self.try_count > 0:
             current_socket = self.sockets.pop(0)
-            proxies = {"http": "http://" + current_socket, "https": "https://" + current_socket}
+            proxies = {
+                "http": "http://" + current_socket,
+                "https": "https://" + current_socket
+            }
             try:
                 request = requests.post(
                     self.url,
@@ -125,14 +152,19 @@ class ProxyRequests:
                 self.raw_content = request.content
                 self.proxy_used = current_socket
             except:
-                print('working...')
+                self.try_count -= 1
                 self.post_file()
+        else:
+            self.__try_count_succeeded()
 
-    # recursively try proxy sockets until successful POST with file and custom headers
+    # recursively try until successful POST with file and custom headers
     def post_file_with_headers(self):
-        if len(self.sockets) > 0:
+        if len(self.sockets) > 0 and self.try_count > 0:
             current_socket = self.sockets.pop(0)
-            proxies = {"http": "http://" + current_socket, "https": "https://" + current_socket}
+            proxies = {
+                "http": "http://" + current_socket,
+                "https": "https://" + current_socket
+            }
             try:
                 request = requests.post(
                     self.url,
@@ -147,8 +179,10 @@ class ProxyRequests:
                 self.raw_content = request.content
                 self.proxy_used = current_socket
             except:
-                print('working...')
+                self.try_count -= 1
                 self.post_file_with_headers()
+        else:
+            self.__try_count_succeeded()
 
     def get_headers(self):
         return self.headers
@@ -187,9 +221,12 @@ class ProxyRequestsBasicAuth(ProxyRequests):
 
     # recursively try proxy sockets until successful GET (overrided method)
     def get(self):
-        if len(self.sockets) > 0:
+        if len(self.sockets) > 0 and self.try_count > 0:
             current_socket = self.sockets.pop(0)
-            proxies = {"http": "http://" + current_socket, "https": "https://" + current_socket}
+            proxies = {
+                "http": "http://" + current_socket,
+                "https": "https://" + current_socket
+            }
             try:
                 request = requests.get(
                     self.url,
@@ -203,14 +240,19 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                 self.raw_content = request.content
                 self.proxy_used = current_socket
             except:
-                print('working...')
+                self.try_count -= 1
                 self.get()
+        else:
+            self.__try_count_succeeded()
 
-    # recursively try proxy sockets until successful GET with headers (overrided method)
+    # recursively try until successful GET with headers (overrided method)
     def get_with_headers(self):
-        if len(self.sockets) > 0:
+        if len(self.sockets) > 0 and self.try_count > 0:
             current_socket = self.sockets.pop(0)
-            proxies = {"http": "http://" + current_socket, "https": "https://" + current_socket}
+            proxies = {
+                "http": "http://" + current_socket,
+                "https": "https://" + current_socket
+            }
             try:
                 request = requests.get(
                     self.url,
@@ -225,14 +267,19 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                 self.raw_content = request.content
                 self.proxy_used = current_socket
             except:
-                print('working...')
+                self.try_count -= 1
                 self.get_with_headers()
+        else:
+            self.__try_count_succeeded()
 
     # recursively try proxy sockets until successful POST (overrided method)
     def post(self, data):
-        if len(self.sockets) > 0:
+        if len(self.sockets) > 0 and self.try_count > 0:
             current_socket = self.sockets.pop(0)
-            proxies = {"http": "http://" + current_socket, "https": "https://" + current_socket}
+            proxies = {
+                "http": "http://" + current_socket,
+                "https": "https://" + current_socket
+            }
             try:
                 request = requests.post(
                     self.url,
@@ -246,14 +293,19 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                 self.raw_content = request.content
                 self.proxy_used = current_socket
             except:
-                print('working...')
+                self.try_count -= 1
                 self.post(data)
+        else:
+            self.__try_count_succeeded()
 
-    # recursively try proxy sockets until successful POST with headers (overrided method)
+    # recursively try until successful POST with headers (overrided method)
     def post_with_headers(self, data):
-        if len(self.sockets) > 0:
+        if len(self.sockets) > 0 and self.try_count > 0:
             current_socket = self.sockets.pop(0)
-            proxies = {"http": "http://" + current_socket, "https": "https://" + current_socket}
+            proxies = {
+                "http": "http://" + current_socket,
+                "https": "https://" + current_socket
+            }
             try:
                 request = requests.post(
                     self.url,
@@ -269,14 +321,19 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                 self.raw_content = request.content
                 self.proxy_used = current_socket
             except:
-                print('working...')
+                self.try_count -= 1
                 self.post_with_headers(data)
+        else:
+            self.__try_count_succeeded()
 
     # recursively try proxy sockets until successful POST with file
     def post_file(self):
-        if len(self.sockets) > 0:
+        if len(self.sockets) > 0 and self.try_count > 0:
             current_socket = self.sockets.pop(0)
-            proxies = {"http": "http://" + current_socket, "https": "https://" + current_socket}
+            proxies = {
+                "http": "http://" + current_socket,
+                "https": "https://" + current_socket
+            }
             try:
                 request = requests.post(
                     self.url,
@@ -291,14 +348,19 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                 self.raw_content = request.content
                 self.proxy_used = current_socket
             except:
-                print('working...')
+                self.try_count -= 1
                 self.post_file()
+        else:
+            self.__try_count_succeeded()
 
-    # recursively try proxy sockets until successful POST with file and custom headers
+    # recursively try until successful POST with file and custom headers
     def post_file_with_headers(self):
-        if len(self.sockets) > 0:
+        if len(self.sockets) > 0 and self.try_count > 0:
             current_socket = self.sockets.pop(0)
-            proxies = {"http": "http://" + current_socket, "https": "https://" + current_socket}
+            proxies = {
+                "http": "http://" + current_socket,
+                "https": "https://" + current_socket
+            }
             try:
                 request = requests.post(
                     self.url,
@@ -314,8 +376,10 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                 self.raw_content = request.content
                 self.proxy_used = current_socket
             except:
-                print('working...')
+                self.try_count -= 1
                 self.post_file_with_headers()
+        else:
+            self.__try_count_succeeded()
 
     def __str__(self):
         return str(self.request)

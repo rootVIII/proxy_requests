@@ -1,8 +1,11 @@
 ## Python Proxy Requests | make an http GET/POST with a proxy scraped from https://www.sslproxies.org/
 pypi.org: https://pypi.org/project/proxy-requests/
 <br><br>
-The ProxyRequests class first scrapes proxies from the web. Then it recursively attempts to make a request if the initial request with a proxy is unsuccessful. System Requirements: Python 3 and the requests module.
-<br> Youtube Demo:  https://youtu.be/isxJeqo_sBA
+The ProxyRequests class first scrapes proxies from the web. Then it recursively attempts to make a request if the initial request with a proxy is unsuccessful.
+<br>
+System Requirements: Python 3 and the requests module.
+<br>
+Youtube Demo:  https://youtu.be/isxJeqo_sBA
 <br><br>
 Runs on Linux and Windows (and Mac probably)-<b>It may take a moment to run depending on current proxy.</b>
 <br><br>
@@ -24,9 +27,8 @@ from proxy_requests.proxy_requests import ProxyRequests, ProxyRequestsBasicAuth
 <br><br>
 If the above import statement is used, method calls will be identical to the ones shown below. Pass a fully qualified URL when initializing an instance.
 <br><br>
-The ProxyRequestBasicAuth subclass has get(), get_with_headers(), post(), post_with_headers(), and post_file() methods that will override the Parent methods.
+The ProxyRequestBasicAuth subclass has the methods get(), get_with_headers(), post(), post_with_headers(), post_file(), and post_file_with_headers() that will override the Parent methods.
 <br><br>
-
 <b>example GET:</b><br>
 <code>
   r = ProxyRequests("https://api.ipify.org")
