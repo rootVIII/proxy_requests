@@ -8,14 +8,12 @@ class ProxyRequests:
     def __init__(self, url):
         self.sockets = []
         self.url = url
-        self.request = ''
-        self.proxy = ''
+        self.request, self.proxy, self.proxy_used, self.raw_content = '', '', '', ''
+        self.status_code = 0
         self.headers = {}
         self.file_dict = {}
         self.__acquire_sockets()
-        self.status_code = ''
-        self.proxy_used = ''
-        self.raw_content = ''
+
 
     # get a list of sockets from sslproxies.org
     def __acquire_sockets(self):
@@ -31,7 +29,11 @@ class ProxyRequests:
             current_socket = self.sockets.pop(0)
             proxies = {"http": "http://" + current_socket, "https": "https://" + current_socket}
             try:
-                request = requests.get(self.url, timeout=3.0, proxies=proxies)
+                request = requests.get(
+                    self.url,
+                    timeout=3.0,
+                    proxies=proxies
+                )
                 self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
@@ -47,7 +49,12 @@ class ProxyRequests:
             current_socket = self.sockets.pop(0)
             proxies = {"http": "http://" + current_socket, "https": "https://" + current_socket}
             try:
-                request = requests.get(self.url, timeout=3.0, proxies=proxies, headers=self.headers)
+                request = requests.get(
+                    self.url,
+                    timeout=3.0,
+                    proxies=proxies,
+                    headers=self.headers
+                )
                 self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
@@ -63,7 +70,12 @@ class ProxyRequests:
             current_socket = self.sockets.pop(0)
             proxies = {"http": "http://" + current_socket, "https": "https://" + current_socket}
             try:
-                request = requests.post(self.url, json=data, timeout=3.0, proxies=proxies)
+                request = requests.post(
+                    self.url,
+                    json=data,
+                    timeout=3.0,
+                    proxies=proxies
+                )
                 self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
@@ -79,11 +91,13 @@ class ProxyRequests:
             current_socket = self.sockets.pop(0)
             proxies = {"http": "http://" + current_socket, "https": "https://" + current_socket}
             try:
-                request = requests.post(self.url,
-                                        json=data,
-                                        timeout=3.0,
-                                        headers=self.headers,
-                                        proxies=proxies)
+                request = requests.post(
+                    self.url,
+                    json=data,
+                    timeout=3.0,
+                    headers=self.headers,
+                    proxies=proxies
+                )
                 self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
@@ -99,10 +113,12 @@ class ProxyRequests:
             current_socket = self.sockets.pop(0)
             proxies = {"http": "http://" + current_socket, "https": "https://" + current_socket}
             try:
-                request = requests.post(self.url,
-                                        files=self.file_dict,
-                                        timeout=3.0,
-                                        proxies=proxies)
+                request = requests.post(
+                    self.url,
+                    files=self.file_dict,
+                    timeout=3.0,
+                    proxies=proxies
+                )
                 self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
@@ -111,6 +127,28 @@ class ProxyRequests:
             except:
                 print('working...')
                 self.post_file()
+
+    # recursively try proxy sockets until successful POST with file and custom headers
+    def post_file_with_headers(self):
+        if len(self.sockets) > 0:
+            current_socket = self.sockets.pop(0)
+            proxies = {"http": "http://" + current_socket, "https": "https://" + current_socket}
+            try:
+                request = requests.post(
+                    self.url,
+                    files=self.file_dict,
+                    timeout=3.0,
+                    headers=self.headers,
+                    proxies=proxies
+                )
+                self.request = request.text
+                self.headers = request.headers
+                self.status_code = request.status_code
+                self.raw_content = request.content
+                self.proxy_used = current_socket
+            except:
+                print('working...')
+                self.post_file_with_headers()
 
     def get_headers(self):
         return self.headers
@@ -153,10 +191,12 @@ class ProxyRequestsBasicAuth(ProxyRequests):
             current_socket = self.sockets.pop(0)
             proxies = {"http": "http://" + current_socket, "https": "https://" + current_socket}
             try:
-                request = requests.get(self.url,
-                                       auth=(self.username, self.password),
-                                       timeout=3.0,
-                                       proxies=proxies)
+                request = requests.get(
+                    self.url,
+                    auth=(self.username, self.password),
+                    timeout=3.0,
+                    proxies=proxies
+                )
                 self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
@@ -172,11 +212,13 @@ class ProxyRequestsBasicAuth(ProxyRequests):
             current_socket = self.sockets.pop(0)
             proxies = {"http": "http://" + current_socket, "https": "https://" + current_socket}
             try:
-                request = requests.get(self.url,
-                                       auth=(self.username, self.password),
-                                       timeout=3.0,
-                                       proxies=proxies,
-                                       headers=self.headers)
+                request = requests.get(
+                    self.url,
+                    auth=(self.username, self.password),
+                    timeout=3.0,
+                    proxies=proxies,
+                    headers=self.headers
+                )
                 self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
@@ -192,11 +234,12 @@ class ProxyRequestsBasicAuth(ProxyRequests):
             current_socket = self.sockets.pop(0)
             proxies = {"http": "http://" + current_socket, "https": "https://" + current_socket}
             try:
-                request = requests.post(self.url,
-                                        json=data,
-                                        auth=(self.username, self.password),
-                                        timeout=3.0,
-                                        proxies=proxies)
+                request = requests.post(
+                    self.url,
+                    json=data,
+                    auth=(self.username, self.password),
+                    timeout=3.0,
+                    proxies=proxies)
                 self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
@@ -212,12 +255,14 @@ class ProxyRequestsBasicAuth(ProxyRequests):
             current_socket = self.sockets.pop(0)
             proxies = {"http": "http://" + current_socket, "https": "https://" + current_socket}
             try:
-                request = requests.post(self.url,
-                                        json=data,
-                                        auth=(self.username, self.password),
-                                        timeout=3.0,
-                                        headers=self.headers,
-                                        proxies=proxies)
+                request = requests.post(
+                    self.url,
+                    json=data,
+                    auth=(self.username, self.password),
+                    timeout=3.0,
+                    headers=self.headers,
+                    proxies=proxies
+                )
                 self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
@@ -233,11 +278,13 @@ class ProxyRequestsBasicAuth(ProxyRequests):
             current_socket = self.sockets.pop(0)
             proxies = {"http": "http://" + current_socket, "https": "https://" + current_socket}
             try:
-                request = requests.post(self.url,
-                                        files=self.file_dict,
-                                        auth=(self.username, self.password),
-                                        timeout=3.0,
-                                        proxies=proxies)
+                request = requests.post(
+                    self.url,
+                    files=self.file_dict,
+                    auth=(self.username, self.password),
+                    timeout=3.0,
+                    proxies=proxies
+                )
                 self.request = request.text
                 self.headers = request.headers
                 self.status_code = request.status_code
@@ -246,6 +293,29 @@ class ProxyRequestsBasicAuth(ProxyRequests):
             except:
                 print('working...')
                 self.post_file()
+
+    # recursively try proxy sockets until successful POST with file and custom headers
+    def post_file_with_headers(self):
+        if len(self.sockets) > 0:
+            current_socket = self.sockets.pop(0)
+            proxies = {"http": "http://" + current_socket, "https": "https://" + current_socket}
+            try:
+                request = requests.post(
+                    self.url,
+                    files=self.file_dict,
+                    auth=(self.username, self.password),
+                    timeout=3.0,
+                    headers=self.headers,
+                    proxies=proxies
+                )
+                self.request = request.text
+                self.headers = request.headers
+                self.status_code = request.status_code
+                self.raw_content = request.content
+                self.proxy_used = current_socket
+            except:
+                print('working...')
+                self.post_file_with_headers()
 
     def __str__(self):
         return str(self.request)
