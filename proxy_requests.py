@@ -27,6 +27,13 @@ class ProxyRequests:
         message += "Please check the validity of your URL."
         print(message)
 
+    def __set_request_data(self, req, socket):
+        self.request = req.text
+        self.headers = req.headers
+        self.status_code = req.status_code
+        self.raw_content = req.content
+        self.proxy_used = socket
+
     # recursively try proxy sockets until successful GET
     def get(self):
         if len(self.sockets) > 0 and self.try_count > 0:
@@ -41,11 +48,7 @@ class ProxyRequests:
                     timeout=3.0,
                     proxies=proxies
                 )
-                self.request = request.text
-                self.headers = request.headers
-                self.status_code = request.status_code
-                self.raw_content = request.content
-                self.proxy_used = current_socket
+                self.__set_request_data(request, current_socket)
             except:
                 self.try_count -= 1
                 self.get()
@@ -67,11 +70,7 @@ class ProxyRequests:
                     proxies=proxies,
                     headers=self.headers
                 )
-                self.request = request.text
-                self.headers = request.headers
-                self.status_code = request.status_code
-                self.raw_content = request.content
-                self.proxy_used = current_socket
+                self.__set_request_data(request, current_socket)
             except:
                 self.try_count -= 1
                 self.get_with_headers()
@@ -93,11 +92,7 @@ class ProxyRequests:
                     timeout=3.0,
                     proxies=proxies
                 )
-                self.request = request.text
-                self.headers = request.headers
-                self.status_code = request.status_code
-                self.raw_content = request.content
-                self.proxy_used = current_socket
+                self.__set_request_data(request, current_socket)
             except:
                 self.try_count -= 1
                 self.post(data)
@@ -120,11 +115,7 @@ class ProxyRequests:
                     headers=self.headers,
                     proxies=proxies
                 )
-                self.request = request.text
-                self.headers = request.headers
-                self.status_code = request.status_code
-                self.raw_content = request.content
-                self.proxy_used = current_socket
+                self.__set_request_data(request, current_socket)
             except:
                 self.try_count -= 1
                 self.post_with_headers(data)
@@ -146,11 +137,7 @@ class ProxyRequests:
                     timeout=3.0,
                     proxies=proxies
                 )
-                self.request = request.text
-                self.headers = request.headers
-                self.status_code = request.status_code
-                self.raw_content = request.content
-                self.proxy_used = current_socket
+                self.__set_request_data(request, current_socket)
             except:
                 self.try_count -= 1
                 self.post_file()
@@ -173,11 +160,7 @@ class ProxyRequests:
                     headers=self.headers,
                     proxies=proxies
                 )
-                self.request = request.text
-                self.headers = request.headers
-                self.status_code = request.status_code
-                self.raw_content = request.content
-                self.proxy_used = current_socket
+                self.__set_request_data(request, current_socket)
             except:
                 self.try_count -= 1
                 self.post_file_with_headers()
@@ -234,11 +217,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                     timeout=3.0,
                     proxies=proxies
                 )
-                self.request = request.text
-                self.headers = request.headers
-                self.status_code = request.status_code
-                self.raw_content = request.content
-                self.proxy_used = current_socket
+                self.__set_request_data(request, current_socket)
             except:
                 self.try_count -= 1
                 self.get()
@@ -261,11 +240,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                     proxies=proxies,
                     headers=self.headers
                 )
-                self.request = request.text
-                self.headers = request.headers
-                self.status_code = request.status_code
-                self.raw_content = request.content
-                self.proxy_used = current_socket
+                self.__set_request_data(request, current_socket)
             except:
                 self.try_count -= 1
                 self.get_with_headers()
@@ -287,11 +262,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                     auth=(self.username, self.password),
                     timeout=3.0,
                     proxies=proxies)
-                self.request = request.text
-                self.headers = request.headers
-                self.status_code = request.status_code
-                self.raw_content = request.content
-                self.proxy_used = current_socket
+                self.__set_request_data(request, current_socket)
             except:
                 self.try_count -= 1
                 self.post(data)
@@ -315,11 +286,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                     headers=self.headers,
                     proxies=proxies
                 )
-                self.request = request.text
-                self.headers = request.headers
-                self.status_code = request.status_code
-                self.raw_content = request.content
-                self.proxy_used = current_socket
+                self.__set_request_data(request, current_socket)
             except:
                 self.try_count -= 1
                 self.post_with_headers(data)
@@ -342,11 +309,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                     timeout=3.0,
                     proxies=proxies
                 )
-                self.request = request.text
-                self.headers = request.headers
-                self.status_code = request.status_code
-                self.raw_content = request.content
-                self.proxy_used = current_socket
+                self.__set_request_data(request, current_socket)
             except:
                 self.try_count -= 1
                 self.post_file()
@@ -370,11 +333,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                     headers=self.headers,
                     proxies=proxies
                 )
-                self.request = request.text
-                self.headers = request.headers
-                self.status_code = request.status_code
-                self.raw_content = request.content
-                self.proxy_used = current_socket
+                self.__set_request_data(request, current_socket)
             except:
                 self.try_count -= 1
                 self.post_file_with_headers()
@@ -383,14 +342,3 @@ class ProxyRequestsBasicAuth(ProxyRequests):
 
     def __str__(self):
         return str(self.request)
-
-
-if __name__ == "__main__":
-    # example post with headers
-    r = ProxyRequests("https://postman-echo.com/post")
-    r.set_headers({"name": "rootVIII", "secret_message": "7Yufs9KIfj33d"})
-    r.post_with_headers({"key1": "value1", "key2": "value2"})
-    print(r)
-    print(r.get_headers())
-    print(r.get_status_code())
-    print(r.get_proxy_used())
