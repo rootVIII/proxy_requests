@@ -177,7 +177,9 @@ r.get_with_headers()
   r = ProxyRequestsBasicAuth("url here", "username", "password")
 </code>
 <br>
+<code>
 h = {"User-Agent": "NCSA Mosaic/3.0 (Windows 95)"}
+</code>
 <br>
 <code>
   r.set_headers(h)
