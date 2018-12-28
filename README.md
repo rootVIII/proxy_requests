@@ -2,9 +2,9 @@
 pypi.org: https://pypi.org/project/proxy-requests/
 <br><br>
 The ProxyRequests class first scrapes proxies from the web. Then it recursively attempts to make a request if the initial request with a proxy is unsuccessful.
-<br>
+<br><br>
 System Requirements: Python 3 and the requests module.
-<br>
+<br><br>
 Youtube Demo:  https://youtu.be/isxJeqo_sBA
 <br><br>
 Runs on Linux and Windows (and Mac probably)-<b>It may take a moment to run depending on current proxy.</b>
