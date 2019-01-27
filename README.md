@@ -8,6 +8,8 @@ System Requirements: Python 3 and the requests module.
 Youtube Demo:  https://youtu.be/isxJeqo_sBA
 <br><br>
 Runs on Linux and Windows (and Mac probably)-<b>It may take a moment to run depending on current proxy.</b>
+<br>
+Each request with a proxy is set with a 3 second timeout in the event that the request takes too long (before trying the next proxy socket in the queue).
 <br><br>
 Either copy the code and put where you want it, or download via pip:
 <br><br>
