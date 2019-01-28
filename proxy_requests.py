@@ -49,7 +49,7 @@ class ProxyRequests:
                     proxies=proxies
                 )
                 self.__set_request_data(request, current_socket)
-            except:
+            except Exception:
                 self.try_count -= 1
                 self.get()
         else:
@@ -71,7 +71,7 @@ class ProxyRequests:
                     headers=self.headers
                 )
                 self.__set_request_data(request, current_socket)
-            except:
+            except Exception:
                 self.try_count -= 1
                 self.get_with_headers()
         else:
@@ -93,7 +93,7 @@ class ProxyRequests:
                     proxies=proxies
                 )
                 self.__set_request_data(request, current_socket)
-            except:
+            except Exception:
                 self.try_count -= 1
                 self.post(data)
         else:
@@ -116,7 +116,7 @@ class ProxyRequests:
                     proxies=proxies
                 )
                 self.__set_request_data(request, current_socket)
-            except:
+            except Exception:
                 self.try_count -= 1
                 self.post_with_headers(data)
         else:
@@ -138,7 +138,7 @@ class ProxyRequests:
                     proxies=proxies
                 )
                 self.__set_request_data(request, current_socket)
-            except:
+            except Exception:
                 self.try_count -= 1
                 self.post_file()
         else:
@@ -161,7 +161,7 @@ class ProxyRequests:
                     proxies=proxies
                 )
                 self.__set_request_data(request, current_socket)
-            except:
+            except Exception:
                 self.try_count -= 1
                 self.post_file_with_headers()
         else:
@@ -218,7 +218,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                     proxies=proxies
                 )
                 self.__set_request_data(request, current_socket)
-            except:
+            except Exception:
                 self.try_count -= 1
                 self.get()
         else:
@@ -241,7 +241,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                     headers=self.headers
                 )
                 self.__set_request_data(request, current_socket)
-            except:
+            except Exception:
                 self.try_count -= 1
                 self.get_with_headers()
         else:
@@ -263,7 +263,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                     timeout=3.0,
                     proxies=proxies)
                 self.__set_request_data(request, current_socket)
-            except:
+            except Exception:
                 self.try_count -= 1
                 self.post(data)
         else:
@@ -287,7 +287,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                     proxies=proxies
                 )
                 self.__set_request_data(request, current_socket)
-            except:
+            except Exception:
                 self.try_count -= 1
                 self.post_with_headers(data)
         else:
@@ -310,7 +310,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                     proxies=proxies
                 )
                 self.__set_request_data(request, current_socket)
-            except:
+            except Exception:
                 self.try_count -= 1
                 self.post_file()
         else:
@@ -334,7 +334,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                     proxies=proxies
                 )
                 self.__set_request_data(request, current_socket)
-            except:
+            except Exception:
                 self.try_count -= 1
                 self.post_file_with_headers()
         else:
