@@ -19,7 +19,7 @@ Either copy the code and put where you want it, or download via pip:
 <br><br>
 or if you need the Basic Auth subclass as well:
 <br>
-<code>from proxy_requests.proxy_requests import ProxyRequests, ProxyRequestsBasicAuth</code>
+<code>from proxy_requests import ProxyRequests, ProxyRequestsBasicAuth</code>
 <br><br>
 If the above import statement is used, method calls will be identical to the ones shown below. Pass a fully qualified URL when initializing an instance.
 <br><br>
