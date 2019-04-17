@@ -17,8 +17,6 @@ If the above import statement is used, method calls will be identical to the one
 <br><br>
 System Requirements: <b>Python 3</b> and the requests module.
 <br><br>
-Youtube Demo:  https://youtu.be/isxJeqo_sBA
-<br><br>
 Runs on Linux and Windows (and Mac probably) - <b>It may take a moment to run depending on the current proxy.</b>
 <br>
 Each request with a proxy is set with a 3 second timeout in the event that the request takes too long (before trying the next proxy socket in the queue).
