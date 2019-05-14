@@ -23,15 +23,16 @@ Each request with a proxy is set with a 3 second timeout in the event that the r
 <br><br>
 The ProxyRequestBasicAuth subclass has the methods get(), get_with_headers(), post(), post_with_headers(), post_file(), and post_file_with_headers() that will override the Parent methods.
 <br>
-<b>example GET:</b>
+
+example GET:
 <pre>
     <code>
 r = ProxyRequests("https://api.ipify.org")</code>
 r.get()
     </code>
 </pre>
-<br>
-<b>example GET with headers:</b>
+
+example GET with headers:
 <pre>
     <code>
 h = {"User-Agent": "NCSA Mosaic/3.0 (Windows 95)"}</code>
@@ -40,16 +41,16 @@ r.set_headers(h)
 r.get_with_headers()
     </code>
 </pre>
-<br>
-<b>example POST:</b>
+
+example POST:
 <pre>
     <code>
 r = ProxyRequests("url here")
 r.post({"key1": "value1", "key2": "value2"})
     </code>
 </pre>
-<br>
-<b>example POST with headers:</b>
+
+example POST with headers:
 <pre>
     <code>
 r = ProxyRequests("url here")
@@ -57,8 +58,8 @@ r.set_headers({"name": "rootVIII", "secret_message": "7Yufs9KIfj33d"})
 r.post_with_headers({"key1": "value1", "key2": "value2"})
     </code>
 </pre>
-<br>
-<b>example POST FILE:
+
+example POST FILE:
 <pre>
     <code>
 <code>r = ProxyRequests("url here")
@@ -66,27 +67,27 @@ r.post_with_headers({"key1": "value1", "key2": "value2"})
 <code>r.post_file()
     </code>
 </pre>
-<br>
-<b>example POST FILE with headers</b>
+
+example POST FILE with headers:
 <pre>
     <code>
 h = {"User-Agent": "NCSA Mosaic/3.0 (Windows 95)"}
 r = ProxyRequests("url here")
 r.set_headers(h)
 r.set_file({'file': open('test.txt', 'rb')})
-r.post_file_with_headers()<
+r.post_file_with_headers()
     </code>
 </pre>
-<br>
-<b>example GET with Basic Authentication:</b>
+
+example GET with Basic Authentication:
 <pre>
     <code>
 r = ProxyRequestsBasicAuth("url here", "username", "password")
 r.get()
     </code>
 </pre>
-<br>
-<b>example GET with headers & Basic Authentication:</b>
+
+example GET with headers & Basic Authentication:
 <pre>
     <code>
 h = {"User-Agent": "NCSA Mosaic/3.0 (Windows 95)"}<
@@ -95,16 +96,16 @@ r.set_headers(h)
 r.get_with_headers()
     </code>
 </pre>
-<br>
-<b>example POST with Basic Authentication</b>
+
+example POST with Basic Authentication
 <pre>
     <code>
 r = ProxyRequestsBasicAuth("url here", "username", "password")
 r.post({"key1": "value1", "key2": "value2"})
     </code>
 </pre>
-<br>
-<b>example POST with headers & Basic Authentication</b>
+
+example POST with headers & Basic Authentication
 <pre>
     <code>
 r = ProxyRequestsBasicAuth("url here", "username", "password")
@@ -112,8 +113,8 @@ r.set_headers({"header_key": "header_value"})</code>
 r.post_with_headers({"key1": "value1", "key2": "value2"})
     </code>
 </pre>
-<br>
-<b>example POST FILE with Basic Authentication:</b>
+
+example POST FILE with Basic Authentication:
 <pre>
     <code>
 r = ProxyRequestsBasicAuth("url here", "username", "password")
@@ -121,7 +122,7 @@ r.set_file({'file': open('test.txt', 'rb')})
 r.post_file()
     </code>
 </pre>
-<br>
+
 <b>example POST FILE with headers & Basic Authentication:</b>
 <pre>
     <code>
