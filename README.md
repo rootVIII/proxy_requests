@@ -62,9 +62,9 @@ r.post_with_headers({"key1": "value1", "key2": "value2"})
 example POST FILE:
 <pre>
     <code>
-<code>r = ProxyRequests("url here")
-<code>r.set_file({'file': open('test.txt', 'rb')})
-<code>r.post_file()
+r = ProxyRequests("url here")
+r.set_file({'file': open('test.txt', 'rb')})
+r.post_file()
     </code>
 </pre>
 
