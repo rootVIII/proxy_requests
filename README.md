@@ -22,97 +22,116 @@ Runs on Linux and Windows (and Mac probably) - <b>It may take a moment to run de
 Each request with a proxy is set with a 3 second timeout in the event that the request takes too long (before trying the next proxy socket in the queue).
 <br><br>
 The ProxyRequestBasicAuth subclass has the methods get(), get_with_headers(), post(), post_with_headers(), post_file(), and post_file_with_headers() that will override the Parent methods.
-<br><br>
-<b>example GET:</b><br>
-<code>r = ProxyRequests("https://api.ipify.org")</code>
 <br>
-<code>r.get()</code>
+<b>example GET:</b>
+<pre>
+    <code>
+r = ProxyRequests("https://api.ipify.org")</code>
+r.get()
+    </code>
+</pre>
 <br>
-<b>example GET with headers:</b><br>
-<code>h = {"User-Agent": "NCSA Mosaic/3.0 (Windows 95)"}</code>
+<b>example GET with headers:</b>
+<pre>
+    <code>
+h = {"User-Agent": "NCSA Mosaic/3.0 (Windows 95)"}</code>
+r = ProxyRequests("url here")
+r.set_headers(h)
+r.get_with_headers()
+    </code>
+</pre>
 <br>
-<code>r = ProxyRequests("url here")</code>
-<br>
-<code>r.set_headers(h)</code>
-<br>
-<code>r.get_with_headers()</code>
-<br>
-<b>example POST:</b><br>
-<code>r = ProxyRequests("url here")</code>
-<br>
-<code>r.post({"key1": "value1", "key2": "value2"})</code>
+<b>example POST:</b>
+<pre>
+    <code>
+r = ProxyRequests("url here")
+r.post({"key1": "value1", "key2": "value2"})
+    </code>
+</pre>
 <br>
 <b>example POST with headers:</b>
+<pre>
+    <code>
+r = ProxyRequests("url here")
+r.set_headers({"name": "rootVIII", "secret_message": "7Yufs9KIfj33d"})
+r.post_with_headers({"key1": "value1", "key2": "value2"})
+    </code>
+</pre>
 <br>
-<code>r = ProxyRequests("url here")</code>
-<br>
-<code>r.set_headers({"name": "rootVIII", "secret_message": "7Yufs9KIfj33d"})</code>
-<br>
-<code>r.post_with_headers({"key1": "value1", "key2": "value2"})</code>
-<br>
-<b>example POST FILE:</b><br>
-<code>r = ProxyRequests("url here")</code>
-<br>
-<code>r.set_file({'file': open('test.txt', 'rb')})</code>
-<br>
-<code>r.post_file()</code>
+<b>example POST FILE:
+<pre>
+    <code>
+<code>r = ProxyRequests("url here")
+<code>r.set_file({'file': open('test.txt', 'rb')})
+<code>r.post_file()
+    </code>
+</pre>
 <br>
 <b>example POST FILE with headers</b>
+<pre>
+    <code>
+h = {"User-Agent": "NCSA Mosaic/3.0 (Windows 95)"}
+r = ProxyRequests("url here")
+r.set_headers(h)
+r.set_file({'file': open('test.txt', 'rb')})
+r.post_file_with_headers()<
+    </code>
+</pre>
 <br>
-<code>h = {"User-Agent": "NCSA Mosaic/3.0 (Windows 95)"}</code>
+<b>example GET with Basic Authentication:</b>
+<pre>
+    <code>
+r = ProxyRequestsBasicAuth("url here", "username", "password")
+r.get()
+    </code>
+</pre>
 <br>
-<code>r = ProxyRequests("url here")</code>
+<b>example GET with headers & Basic Authentication:</b>
+<pre>
+    <code>
+h = {"User-Agent": "NCSA Mosaic/3.0 (Windows 95)"}<
+r = ProxyRequestsBasicAuth("url here", "username", "password")
+r.set_headers(h)
+r.get_with_headers()
+    </code>
+</pre>
 <br>
-<code>r.set_headers(h)</code>
+<b>example POST with Basic Authentication</b>
+<pre>
+    <code>
+r = ProxyRequestsBasicAuth("url here", "username", "password")
+r.post({"key1": "value1", "key2": "value2"})
+    </code>
+</pre>
 <br>
-<code>r.set_file({'file': open('test.txt', 'rb')})</code>
+<b>example POST with headers & Basic Authentication</b>
+<pre>
+    <code>
+r = ProxyRequestsBasicAuth("url here", "username", "password")
+r.set_headers({"header_key": "header_value"})</code>
+r.post_with_headers({"key1": "value1", "key2": "value2"})
+    </code>
+</pre>
 <br>
-<code>r.post_file_with_headers()</code>
-<br>
-<b>example GET with Basic Authentication:</b><br>
-<code>r = ProxyRequestsBasicAuth("url here", "username", "password")</code>
-<br>
-<code>r.get()</code>
-<br>
-<b>example GET with headers & Basic Authentication:</b><br>
-<code>h = {"User-Agent": "NCSA Mosaic/3.0 (Windows 95)"}</code>
-<br>
-<code>r = ProxyRequestsBasicAuth("url here", "username", "password")</code>
-<br>
-<code>r.set_headers(h)</code>
-<br>
-<code>r.get_with_headers()</code>
-<br>
-<b>example POST with Basic Authentication</b><br>
-<code>r = ProxyRequestsBasicAuth("url here", "username", "password")</code>
-<br>
-<code>r.post({"key1": "value1", "key2": "value2"})</code>
-<br>
-<b>example POST with headers & Basic Authentication</b><br>
-<code>r = ProxyRequestsBasicAuth("url here", "username", "password")</code>
-<br>
-<code>r.set_headers({"header_key": "header_value"})</code>
-<br>
-<code>r.post_with_headers({"key1": "value1", "key2": "value2"})</code>
-<br>
-<b>example POST FILE with Basic Authentication:</b><br>
-<code>r = ProxyRequestsBasicAuth("url here", "username", "password")</code>
-<br>
-<code>r.set_file({'file': open('test.txt', 'rb')})</code>
-<br>
-<code>r.post_file()</code>
+<b>example POST FILE with Basic Authentication:</b>
+<pre>
+    <code>
+r = ProxyRequestsBasicAuth("url here", "username", "password")
+r.set_file({'file': open('test.txt', 'rb')})
+r.post_file()
+    </code>
+</pre>
 <br>
 <b>example POST FILE with headers & Basic Authentication:</b>
-<br>
-<code>h = {"User-Agent": "NCSA Mosaic/3.0 (Windows 95)"}</code>
-<br>
-<code>r = ProxyRequestsBasicAuth("url here", "username", "password")</code>
-<br>
-<code>r.set_headers(h)</code>
-<br>
-<code>r.set_file({'file': open('test.txt', 'rb')})</code>
-<br>
-<code>r.post_file_with_headers()</code>
+<pre>
+    <code>
+h = {"User-Agent": "NCSA Mosaic/3.0 (Windows 95)"}
+r = ProxyRequestsBasicAuth("url here", "username", "password")
+r.set_headers(h)</code>
+r.set_file({'file': open('test.txt', 'rb')})
+r.post_file_with_headers()
+    </code>
+</pre>    
 <br><br>
 <strong>Response Methods:</strong>
 <br><br>
