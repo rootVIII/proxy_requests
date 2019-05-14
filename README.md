@@ -24,7 +24,7 @@ Each request with a proxy is set with a 3 second timeout in the event that the r
 The ProxyRequestBasicAuth subclass has the methods get(), get_with_headers(), post(), post_with_headers(), post_file(), and post_file_with_headers() that will override the Parent methods.
 <br>
 
-example GET:
+GET:
 <pre>
     <code>
 r = ProxyRequests("https://api.ipify.org")</code>
@@ -32,7 +32,7 @@ r.get()
     </code>
 </pre>
 
-example GET with headers:
+GET with headers:
 <pre>
     <code>
 h = {"User-Agent": "NCSA Mosaic/3.0 (Windows 95)"}</code>
@@ -42,7 +42,7 @@ r.get_with_headers()
     </code>
 </pre>
 
-example POST:
+POST:
 <pre>
     <code>
 r = ProxyRequests("url here")
@@ -50,7 +50,7 @@ r.post({"key1": "value1", "key2": "value2"})
     </code>
 </pre>
 
-example POST with headers:
+POST with headers:
 <pre>
     <code>
 r = ProxyRequests("url here")
@@ -59,7 +59,7 @@ r.post_with_headers({"key1": "value1", "key2": "value2"})
     </code>
 </pre>
 
-example POST FILE:
+POST FILE:
 <pre>
     <code>
 r = ProxyRequests("url here")
@@ -68,7 +68,7 @@ r.post_file()
     </code>
 </pre>
 
-example POST FILE with headers:
+POST FILE with headers:
 <pre>
     <code>
 h = {"User-Agent": "NCSA Mosaic/3.0 (Windows 95)"}
@@ -79,7 +79,7 @@ r.post_file_with_headers()
     </code>
 </pre>
 
-example GET with Basic Authentication:
+GET with Basic Authentication:
 <pre>
     <code>
 r = ProxyRequestsBasicAuth("url here", "username", "password")
@@ -87,7 +87,7 @@ r.get()
     </code>
 </pre>
 
-example GET with headers & Basic Authentication:
+GET with headers & Basic Authentication:
 <pre>
     <code>
 h = {"User-Agent": "NCSA Mosaic/3.0 (Windows 95)"}<
@@ -97,7 +97,7 @@ r.get_with_headers()
     </code>
 </pre>
 
-example POST with Basic Authentication
+POST with Basic Authentication
 <pre>
     <code>
 r = ProxyRequestsBasicAuth("url here", "username", "password")
@@ -105,7 +105,7 @@ r.post({"key1": "value1", "key2": "value2"})
     </code>
 </pre>
 
-example POST with headers & Basic Authentication
+POST with headers & Basic Authentication
 <pre>
     <code>
 r = ProxyRequestsBasicAuth("url here", "username", "password")
@@ -114,7 +114,7 @@ r.post_with_headers({"key1": "value1", "key2": "value2"})
     </code>
 </pre>
 
-example POST FILE with Basic Authentication:
+POST FILE with Basic Authentication:
 <pre>
     <code>
 r = ProxyRequestsBasicAuth("url here", "username", "password")
@@ -123,7 +123,7 @@ r.post_file()
     </code>
 </pre>
 
-<b>example POST FILE with headers & Basic Authentication:</b>
+POST FILE with headers & Basic Authentication:
 <pre>
     <code>
 h = {"User-Agent": "NCSA Mosaic/3.0 (Windows 95)"}
