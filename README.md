@@ -134,7 +134,7 @@ r.post_file_with_headers()
     </code>
 </pre>    
 <br><br>
-<b><u>Response Methods</u></b>
+<u><b>Response Methods</b></u>
 <br><br>
   <b>Returns a string:</b>
 <br>
