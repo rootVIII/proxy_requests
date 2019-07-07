@@ -144,6 +144,10 @@ r.post_file_with_headers()
 <br>
 <code>r.get_raw()</code>
 <br>
+<b>Get the response as JSON (if valid JSON):</b>
+<br>
+<code>r.get_json()</code>
+<br>
 <b>Get the response headers:</b>
 <br>
 <code>print(r.get_headers())</code>
@@ -157,19 +161,24 @@ r.post_file_with_headers()
 <code>print(r.get_proxy_used())</code>
 <br>
 <br>
-<b>To write response a to a file (including an image):</b>
+<b>To write raw data a to a file (including an image):</b>
 <br>
-<code>r.response_to_file()</code>
+<pre>
+    <code>
+with open('out.txt', 'wb') as file_out:
+    file_out.write(self.raw_content)
+    </code>
+</pre>
 <br>
-<b>Load your response to JSON: </b>
+<b>Dump the response to a file as JSON:</b>
 <br>
-<code>import json</code>
-<br>
-<code>r = ProxyRequests(url)</code>
-<br>
-<code>r.get()</code>
-<br>
-<code>json.loads(r.get_raw().decode())</code>
+<pre>
+    <code>
+import json
+with open('test.txt', 'w') as file_out:
+    json.dump(r.get_json(), f)
+    </code>
+</pre>
 <br><br>
 This was developed on Ubuntu 16.04.4 LTS.
 <hr>
