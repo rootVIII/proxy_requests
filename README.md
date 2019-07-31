@@ -165,8 +165,13 @@ r.post_file_with_headers()
 <br>
 <pre>
     <code>
-with open('out.txt', 'wb') as file_out:
-    file_out.write(self.raw_content)
+
+url = 'https://www.restwords.com/static/ICON.png'
+r = ProxyRequests(url)
+r.get()
+with open('out.png', 'wb') as f:
+    f.write(r.get_raw())
+
     </code>
 </pre>
 <br>
