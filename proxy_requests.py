@@ -1,4 +1,5 @@
 import requests
+from random import randint
 from re import findall
 # rootVIII
 
@@ -12,7 +13,8 @@ class ProxyRequests:
         self.status_code = 0
         self.headers, self.file_dict = {}, {}
         self.json = None
-        self.timeout = 8.0
+        # timeout in seconds per proxy request attempt
+        self.timeout = 6.0
         self.errs = ('ConnectTimeout', 'ProxyError', 'SSLError')
         self.acquire_sockets()
 
@@ -34,10 +36,14 @@ class ProxyRequests:
         except Exception:
             self.json = {}
 
+    def rand_sock(self):
+        return randint(0, len(self.sockets) - 1)
+
     # recursively try proxy sockets until successful GET
     def get(self):
         if len(self.sockets) > 0:
-            current_socket = self.sockets.pop(0)
+            current_socket = self.sockets.pop(self.rand_sock())
+            print(current_socket)
             proxies = {
                 'http': 'http://' + current_socket,
                 'https': 'https://' + current_socket
@@ -58,7 +64,7 @@ class ProxyRequests:
     # recursively try proxy sockets until successful GET with headers
     def get_with_headers(self):
         if len(self.sockets) > 0:
-            current_socket = self.sockets.pop(0)
+            current_socket = self.sockets.pop(self.rand_sock())
             proxies = {
                 'http': 'http://' + current_socket,
                 'https': 'https://' + current_socket
@@ -81,7 +87,7 @@ class ProxyRequests:
     # recursively try proxy sockets until successful POST
     def post(self, data):
         if len(self.sockets) > 0:
-            current_socket = self.sockets.pop(0)
+            current_socket = self.sockets.pop(self.rand_sock())
             proxies = {
                 'http': 'http://' + current_socket,
                 'https': 'https://' + current_socket
@@ -104,7 +110,7 @@ class ProxyRequests:
     # recursively try proxy sockets until successful POST with headers
     def post_with_headers(self, data):
         if len(self.sockets) > 0:
-            current_socket = self.sockets.pop(0)
+            current_socket = self.sockets.pop(self.rand_sock())
             proxies = {
                 'http': 'http://' + current_socket,
                 'https': 'https://' + current_socket
@@ -127,7 +133,7 @@ class ProxyRequests:
     # recursively try proxy sockets until successful POST with file
     def post_file(self):
         if len(self.sockets) > 0:
-            current_socket = self.sockets.pop(0)
+            current_socket = self.sockets.pop(self.rand_sock())
             proxies = {
                 'http': 'http://' + current_socket,
                 'https': 'https://' + current_socket
@@ -149,7 +155,7 @@ class ProxyRequests:
     # recursively try until successful POST with file and custom headers
     def post_file_with_headers(self):
         if len(self.sockets) > 0:
-            current_socket = self.sockets.pop(0)
+            current_socket = self.sockets.pop(self.rand_sock())
             proxies = {
                 'http': 'http://' + current_socket,
                 'https': 'https://' + current_socket
@@ -205,7 +211,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
     # recursively try proxy sockets until successful GET (overrided method)
     def get(self):
         if len(self.sockets) > 0:
-            current_socket = self.sockets.pop(0)
+            current_socket = self.sockets.pop(self.rand_sock())
             proxies = {
                 'http': 'http://' + current_socket,
                 'https': 'https://' + current_socket
@@ -227,7 +233,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
     # recursively try until successful GET with headers (overrided method)
     def get_with_headers(self):
         if len(self.sockets) > 0:
-            current_socket = self.sockets.pop(0)
+            current_socket = self.sockets.pop(self.rand_sock())
             proxies = {
                 'http': 'http://' + current_socket,
                 'https': 'https://' + current_socket
@@ -250,7 +256,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
     # recursively try proxy sockets until successful POST (overrided method)
     def post(self, data):
         if len(self.sockets) > 0:
-            current_socket = self.sockets.pop(0)
+            current_socket = self.sockets.pop(self.rand_sock())
             proxies = {
                 'http': 'http://' + current_socket,
                 'https': 'https://' + current_socket
@@ -273,7 +279,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
     # recursively try until successful POST with headers (overrided method)
     def post_with_headers(self, data):
         if len(self.sockets) > 0:
-            current_socket = self.sockets.pop(0)
+            current_socket = self.sockets.pop(self.rand_sock())
             proxies = {
                 'http': 'http://' + current_socket,
                 'https': 'https://' + current_socket
@@ -297,7 +303,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
     # recursively try proxy sockets until successful POST with file
     def post_file(self):
         if len(self.sockets) > 0:
-            current_socket = self.sockets.pop(0)
+            current_socket = self.sockets.pop(self.rand_sock())
             proxies = {
                 'http': 'http://' + current_socket,
                 'https': 'https://' + current_socket
@@ -320,7 +326,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
     # recursively try until successful POST with file and custom headers
     def post_file_with_headers(self):
         if len(self.sockets) > 0:
-            current_socket = self.sockets.pop(0)
+            current_socket = self.sockets.pop(self.rand_sock())
             proxies = {
                 'http': 'http://' + current_socket,
                 'https': 'https://' + current_socket
