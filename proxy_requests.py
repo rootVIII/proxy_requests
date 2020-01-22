@@ -13,7 +13,7 @@ class ProxyRequests:
         self.headers, self.file_dict = {}, {}
         self.json = None
         self.timeout = 8.0
-        self.errs = ('ConnectTimeout', 'ProxyError')
+        self.errs = ('ConnectTimeout', 'ProxyError', 'SSLError')
         self.acquire_sockets()
 
     # get a list of sockets from sslproxies.org
@@ -34,13 +34,6 @@ class ProxyRequests:
         except Exception:
             self.json = {}
 
-    def is_timeout(self, err):
-        if type(err).__name__ not in self.errs:
-            raise err
-
-    def try_count_succeeded(self):
-        raise Exception('Proxy Pool has been emptied')
-
     # recursively try proxy sockets until successful GET
     def get(self):
         if len(self.sockets) > 0:
@@ -56,10 +49,11 @@ class ProxyRequests:
                     proxies=proxies)
                 self.set_request_data(request, current_socket)
             except Exception as e:
-                self.is_timeout(e)
+                if type(e).__name__ not in self.errs:
+                    raise e
                 self.get()
         else:
-            self.try_count_succeeded()
+            raise Exception('Proxy Pool has been emptied')
 
     # recursively try proxy sockets until successful GET with headers
     def get_with_headers(self):
@@ -77,10 +71,12 @@ class ProxyRequests:
                     headers=self.headers)
                 self.set_request_data(request, current_socket)
             except Exception as e:
-                self.is_timeout(e)
+                if type(e).__name__ not in self.errs:
+                    raise e
                 self.get_with_headers()
-        else:
-            self.try_count_succeeded()
+
+            else:
+                raise Exception('Proxy Pool has been emptied')
 
     # recursively try proxy sockets until successful POST
     def post(self, data):
@@ -98,10 +94,12 @@ class ProxyRequests:
                     proxies=proxies)
                 self.set_request_data(request, current_socket)
             except Exception as e:
-                self.is_timeout(e)
+                if type(e).__name__ not in self.errs:
+                    raise e
                 self.post(data)
-        else:
-            self.try_count_succeeded()
+
+            else:
+                raise Exception('Proxy Pool has been emptied')
 
     # recursively try proxy sockets until successful POST with headers
     def post_with_headers(self, data):
@@ -120,10 +118,11 @@ class ProxyRequests:
                     proxies=proxies)
                 self.set_request_data(request, current_socket)
             except Exception as e:
-                self.is_timeout(e)
+                if type(e).__name__ not in self.errs:
+                    raise e
                 self.post_with_headers(data)
         else:
-            self.try_count_succeeded()
+            raise Exception('Proxy Pool has been emptied')
 
     # recursively try proxy sockets until successful POST with file
     def post_file(self):
@@ -141,10 +140,11 @@ class ProxyRequests:
                     proxies=proxies)
                 self.set_request_data(request, current_socket)
             except Exception as e:
-                self.is_timeout(e)
+                if type(e).__name__ not in self.errs:
+                    raise e
                 self.post_file()
         else:
-            self.try_count_succeeded()
+            raise Exception('Proxy Pool has been emptied')
 
     # recursively try until successful POST with file and custom headers
     def post_file_with_headers(self):
@@ -163,10 +163,11 @@ class ProxyRequests:
                     proxies=proxies)
                 self.set_request_data(request, current_socket)
             except Exception as e:
-                self.is_timeout(e)
+                if type(e).__name__ not in self.errs:
+                    raise e
                 self.post_file_with_headers()
         else:
-            self.try_count_succeeded()
+            raise Exception('Proxy Pool has been emptied')
 
     def get_headers(self):
         return self.headers
@@ -217,10 +218,11 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                     proxies=proxies)
                 self.set_request_data(request, current_socket)
             except Exception as e:
-                self.is_timeout(e)
+                if type(e).__name__ not in self.errs:
+                    raise e
                 self.get()
         else:
-            self.try_count_succeeded()
+            raise Exception('Proxy Pool has been emptied')
 
     # recursively try until successful GET with headers (overrided method)
     def get_with_headers(self):
@@ -239,10 +241,11 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                     headers=self.headers)
                 self.set_request_data(request, current_socket)
             except Exception as e:
-                self.is_timeout(e)
+                if type(e).__name__ not in self.errs:
+                    raise e
                 self.get_with_headers()
         else:
-            self.try_count_succeeded()
+            raise Exception('Proxy Pool has been emptied')
 
     # recursively try proxy sockets until successful POST (overrided method)
     def post(self, data):
@@ -261,10 +264,11 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                     proxies=proxies)
                 self.set_request_data(request, current_socket)
             except Exception as e:
-                self.is_timeout(e)
+                if type(e).__name__ not in self.errs:
+                    raise e
                 self.post(data)
         else:
-            self.try_count_succeeded()
+            raise Exception('Proxy Pool has been emptied')
 
     # recursively try until successful POST with headers (overrided method)
     def post_with_headers(self, data):
@@ -284,10 +288,11 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                     proxies=proxies)
                 self.set_request_data(request, current_socket)
             except Exception as e:
-                self.is_timeout(e)
+                if type(e).__name__ not in self.errs:
+                    raise e
                 self.post_with_headers(data)
         else:
-            self.try_count_succeeded()
+            raise Exception('Proxy Pool has been emptied')
 
     # recursively try proxy sockets until successful POST with file
     def post_file(self):
@@ -306,10 +311,11 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                     proxies=proxies)
                 self.set_request_data(request, current_socket)
             except Exception as e:
-                self.is_timeout(e)
+                if type(e).__name__ not in self.errs:
+                    raise e
                 self.post_file()
         else:
-            self.try_count_succeeded()
+            raise Exception('Proxy Pool has been emptied')
 
     # recursively try until successful POST with file and custom headers
     def post_file_with_headers(self):
@@ -329,10 +335,11 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                     proxies=proxies)
                 self.set_request_data(request, current_socket)
             except Exception as e:
-                self.is_timeout(e)
+                if type(e).__name__ not in self.errs:
+                    raise e
                 self.post_file_with_headers()
         else:
-            self.try_count_succeeded()
+            raise Exception('Proxy Pool has been emptied')
 
     def __str__(self):
         return str(self.request)
