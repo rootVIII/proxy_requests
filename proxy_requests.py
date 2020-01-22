@@ -43,7 +43,6 @@ class ProxyRequests:
     def get(self):
         if len(self.sockets) > 0:
             current_socket = self.sockets.pop(self.rand_sock())
-            print(current_socket)
             proxies = {
                 'http': 'http://' + current_socket,
                 'https': 'https://' + current_socket
