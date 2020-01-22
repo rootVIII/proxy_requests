@@ -14,14 +14,14 @@ class ProxyRequests:
         self.headers, self.file_dict = {}, {}
         self.json = None
         # timeout in seconds per proxy request attempt
-        self.timeout = 8.0
+        self.timeout = 6.0
         self.errs = ('ConnectTimeout', 'ProxyError', 'SSLError')
         self.acquire_sockets()
 
     # get a list of sockets from sslproxies.org
     def acquire_sockets(self):
         r = requests.get('https://www.sslproxies.org/')
-        matches = findall(r"<td>\d+.\d+.\d+.\d+</td><td>\d+</td>", r.text)
+        matches = findall(r"<td>\d+\.\d+\.\d+\.\d+</td><td>\d+</td>", r.text)
         revised = [m.replace('<td>', '') for m in matches]
         self.sockets = [s[:-5].replace('</td>', ':') for s in revised]
 
