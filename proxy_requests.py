@@ -14,7 +14,7 @@ class ProxyRequests:
         self.headers, self.file_dict = {}, {}
         self.json = None
         # timeout in seconds per proxy request attempt
-        self.timeout = 6.0
+        self.timeout = 3.0
         self.errs = ('ConnectTimeout', 'ProxyError', 'SSLError')
         self.acquire_sockets()
 
@@ -23,7 +23,7 @@ class ProxyRequests:
         r = requests.get('https://www.sslproxies.org/')
         matches = findall(r"<td>\d+\.\d+\.\d+\.\d+</td><td>\d+</td>", r.text)
         revised = [m.replace('<td>', '') for m in matches]
-        self.sockets = [s[:-5].replace('</td>', ':') for s in revised]
+        self.sockets = [s[:-5].replace('</td>', ':') for s in revised][:24]
 
     def set_request_data(self, req, socket):
         self.request = req.text
@@ -193,9 +193,7 @@ class ProxyRequests:
         return self.raw_content
 
     def get_json(self):
-        if self.json is not None:
-            return self.json
-        return {}
+        return self.json
 
     def __str__(self):
         return str(self.request)
@@ -345,6 +343,3 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                 self.post_file_with_headers()
         else:
             raise Exception('Proxy Pool has been emptied')
-
-    def __str__(self):
-        return str(self.request)
