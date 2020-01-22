@@ -13,7 +13,6 @@ class ProxyRequests:
         self.status_code = 0
         self.headers, self.file_dict = {}, {}
         self.json = None
-        # timeout in seconds per proxy request attempt
         self.timeout = 3.0
         self.errs = ('ConnectTimeout', 'ProxyError', 'SSLError')
         self.acquire_sockets()
