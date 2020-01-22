@@ -14,7 +14,7 @@ class ProxyRequests:
         self.headers, self.file_dict = {}, {}
         self.json = None
         # timeout in seconds per proxy request attempt
-        self.timeout = 6.0
+        self.timeout = 8.0
         self.errs = ('ConnectTimeout', 'ProxyError', 'SSLError')
         self.acquire_sockets()
 
