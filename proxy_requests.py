@@ -1,6 +1,7 @@
 import requests
 from random import randint
 from re import findall
+from traceback import print_exc
 # rootVIII
 
 
@@ -13,7 +14,7 @@ class ProxyRequests:
         self.status_code = 0
         self.headers, self.file_dict = {}, {}
         self.json = None
-        self.timeout = 3.0
+        self.timeout = 8.0
         self.errs = ('ConnectTimeout', 'ProxyError', 'SSLError')
         self.acquire_sockets()
 
@@ -22,7 +23,7 @@ class ProxyRequests:
         r = requests.get('https://www.sslproxies.org/')
         matches = findall(r"<td>\d+\.\d+\.\d+\.\d+</td><td>\d+</td>", r.text)
         revised = [m.replace('<td>', '') for m in matches]
-        self.sockets = [s[:-5].replace('</td>', ':') for s in revised][:24]
+        self.sockets = [s[:-5].replace('</td>', ':') for s in revised][:16]
 
     def set_request_data(self, req, socket):
         self.request = req.text
@@ -38,7 +39,17 @@ class ProxyRequests:
     def rand_sock(self):
         return randint(0, len(self.sockets) - 1)
 
-    # recursively try proxy sockets until successful GET
+    def is_err(self, err):
+        if type(err).__name__ not in self.errs:
+            raise err
+
+    @staticmethod
+    def limit_succeeded():
+        try:
+            raise PoolSucceeded('Proxy Pool has been emptied')
+        except PoolSucceeded:
+            print_exc(limit=1)
+
     def get(self):
         if len(self.sockets) > 0:
             current_socket = self.sockets.pop(self.rand_sock())
@@ -53,13 +64,11 @@ class ProxyRequests:
                     proxies=proxies)
                 self.set_request_data(request, current_socket)
             except Exception as e:
-                if type(e).__name__ not in self.errs:
-                    raise e
+                self.is_err(e)
                 self.get()
         else:
-            raise Exception('Proxy Pool has been emptied')
+            self.limit_succeeded()
 
-    # recursively try proxy sockets until successful GET with headers
     def get_with_headers(self):
         if len(self.sockets) > 0:
             current_socket = self.sockets.pop(self.rand_sock())
@@ -75,14 +84,11 @@ class ProxyRequests:
                     headers=self.headers)
                 self.set_request_data(request, current_socket)
             except Exception as e:
-                if type(e).__name__ not in self.errs:
-                    raise e
+                self.is_err(e)
                 self.get_with_headers()
+        else:
+            self.limit_succeeded()
 
-            else:
-                raise Exception('Proxy Pool has been emptied')
-
-    # recursively try proxy sockets until successful POST
     def post(self, data):
         if len(self.sockets) > 0:
             current_socket = self.sockets.pop(self.rand_sock())
@@ -98,14 +104,12 @@ class ProxyRequests:
                     proxies=proxies)
                 self.set_request_data(request, current_socket)
             except Exception as e:
-                if type(e).__name__ not in self.errs:
-                    raise e
+                self.is_err(e)
                 self.post(data)
 
             else:
-                raise Exception('Proxy Pool has been emptied')
+                self.limit_succeeded()
 
-    # recursively try proxy sockets until successful POST with headers
     def post_with_headers(self, data):
         if len(self.sockets) > 0:
             current_socket = self.sockets.pop(self.rand_sock())
@@ -122,13 +126,11 @@ class ProxyRequests:
                     proxies=proxies)
                 self.set_request_data(request, current_socket)
             except Exception as e:
-                if type(e).__name__ not in self.errs:
-                    raise e
+                self.is_err(e)
                 self.post_with_headers(data)
         else:
-            raise Exception('Proxy Pool has been emptied')
+            self.limit_succeeded()
 
-    # recursively try proxy sockets until successful POST with file
     def post_file(self):
         if len(self.sockets) > 0:
             current_socket = self.sockets.pop(self.rand_sock())
@@ -144,13 +146,11 @@ class ProxyRequests:
                     proxies=proxies)
                 self.set_request_data(request, current_socket)
             except Exception as e:
-                if type(e).__name__ not in self.errs:
-                    raise e
+                self.is_err(e)
                 self.post_file()
         else:
-            raise Exception('Proxy Pool has been emptied')
+            self.limit_succeeded()
 
-    # recursively try until successful POST with file and custom headers
     def post_file_with_headers(self):
         if len(self.sockets) > 0:
             current_socket = self.sockets.pop(self.rand_sock())
@@ -167,11 +167,10 @@ class ProxyRequests:
                     proxies=proxies)
                 self.set_request_data(request, current_socket)
             except Exception as e:
-                if type(e).__name__ not in self.errs:
-                    raise e
+                self.is_err(e)
                 self.post_file_with_headers()
         else:
-            raise Exception('Proxy Pool has been emptied')
+            self.limit_succeeded()
 
     def get_headers(self):
         return self.headers
@@ -204,7 +203,6 @@ class ProxyRequestsBasicAuth(ProxyRequests):
         self.username = username
         self.password = password
 
-    # recursively try proxy sockets until successful GET (overrided method)
     def get(self):
         if len(self.sockets) > 0:
             current_socket = self.sockets.pop(self.rand_sock())
@@ -220,13 +218,11 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                     proxies=proxies)
                 self.set_request_data(request, current_socket)
             except Exception as e:
-                if type(e).__name__ not in self.errs:
-                    raise e
+                self.is_err(e)
                 self.get()
         else:
-            raise Exception('Proxy Pool has been emptied')
+            self.limit_succeeded()
 
-    # recursively try until successful GET with headers (overrided method)
     def get_with_headers(self):
         if len(self.sockets) > 0:
             current_socket = self.sockets.pop(self.rand_sock())
@@ -243,13 +239,11 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                     headers=self.headers)
                 self.set_request_data(request, current_socket)
             except Exception as e:
-                if type(e).__name__ not in self.errs:
-                    raise e
+                self.is_err(e)
                 self.get_with_headers()
         else:
-            raise Exception('Proxy Pool has been emptied')
+            self.limit_succeeded()
 
-    # recursively try proxy sockets until successful POST (overrided method)
     def post(self, data):
         if len(self.sockets) > 0:
             current_socket = self.sockets.pop(self.rand_sock())
@@ -266,13 +260,11 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                     proxies=proxies)
                 self.set_request_data(request, current_socket)
             except Exception as e:
-                if type(e).__name__ not in self.errs:
-                    raise e
+                self.is_err(e)
                 self.post(data)
         else:
-            raise Exception('Proxy Pool has been emptied')
+            self.limit_succeeded()
 
-    # recursively try until successful POST with headers (overrided method)
     def post_with_headers(self, data):
         if len(self.sockets) > 0:
             current_socket = self.sockets.pop(self.rand_sock())
@@ -290,13 +282,11 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                     proxies=proxies)
                 self.set_request_data(request, current_socket)
             except Exception as e:
-                if type(e).__name__ not in self.errs:
-                    raise e
+                self.is_err(e)
                 self.post_with_headers(data)
         else:
-            raise Exception('Proxy Pool has been emptied')
+            self.limit_succeeded()
 
-    # recursively try proxy sockets until successful POST with file
     def post_file(self):
         if len(self.sockets) > 0:
             current_socket = self.sockets.pop(self.rand_sock())
@@ -313,13 +303,11 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                     proxies=proxies)
                 self.set_request_data(request, current_socket)
             except Exception as e:
-                if type(e).__name__ not in self.errs:
-                    raise e
+                self.is_err(e)
                 self.post_file()
         else:
-            raise Exception('Proxy Pool has been emptied')
+            self.limit_succeeded()
 
-    # recursively try until successful POST with file and custom headers
     def post_file_with_headers(self):
         if len(self.sockets) > 0:
             current_socket = self.sockets.pop(self.rand_sock())
@@ -337,8 +325,11 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                     proxies=proxies)
                 self.set_request_data(request, current_socket)
             except Exception as e:
-                if type(e).__name__ not in self.errs:
-                    raise e
+                self.is_err(e)
                 self.post_file_with_headers()
         else:
-            raise Exception('Proxy Pool has been emptied')
+            self.limit_succeeded()
+
+
+class PoolSucceeded(Exception):
+    pass
