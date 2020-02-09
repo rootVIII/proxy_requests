@@ -106,7 +106,6 @@ class ProxyRequests:
             except Exception as e:
                 self.is_err(e)
                 self.post(data)
-
             else:
                 self.limit_succeeded()
 
