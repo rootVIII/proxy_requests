@@ -19,7 +19,9 @@ System Requirements: <b>Python 3</b> and the requests module.
 <br><br>
 Runs on Linux and Windows (and Mac probably) - <b>It may take a moment to run depending on the current proxy.</b>
 <br>
-Each request with a proxy is set with an 8 second timeout in the event that the request takes too long (before trying the next proxy socket in the queue).
+Each request with a proxy is set with an 4 second timeout in the event that the request takes too long (before trying the next proxy socket in the queue).
+<br><br>
+Proxies are randomly popped from the queue.
 <br><br>
 The ProxyRequestBasicAuth subclass has the methods get(), get_with_headers(), post(), post_with_headers(), post_file(), and post_file_with_headers() that will override the Parent methods.
 <br>
