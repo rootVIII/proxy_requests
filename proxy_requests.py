@@ -14,7 +14,7 @@ class ProxyRequests:
         self.status_code = 0
         self.headers, self.file_dict = {}, {}
         self.json = None
-        self.timeout = 8.0
+        self.timeout = 4.0
         self.errs = ('ConnectTimeout', 'ProxyError', 'SSLError')
         self.acquire_sockets()
 
@@ -23,7 +23,7 @@ class ProxyRequests:
         r = requests.get('https://www.sslproxies.org/')
         matches = findall(r"<td>\d+\.\d+\.\d+\.\d+</td><td>\d+</td>", r.text)
         revised = [m.replace('<td>', '') for m in matches]
-        self.sockets = [s[:-5].replace('</td>', ':') for s in revised][:16]
+        self.sockets = [s[:-5].replace('</td>', ':') for s in revised]
 
     def set_request_data(self, req, socket):
         self.request = req.text
