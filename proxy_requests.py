@@ -1,58 +1,53 @@
 import requests
 from random import randint
 from re import findall
-from traceback import print_exc
 # rootVIII
+# pycodestyle validated
 
 
 class ProxyRequests:
     def __init__(self, url):
         self.sockets = []
         self.url = url
-        self.request, self.proxy = '', ''
-        self.proxy_used, self.raw_content = '', ''
-        self.status_code = 0
-        self.headers, self.file_dict = {}, {}
-        self.json = None
-        self.timeout = 4.0
-        self.errs = ('ConnectTimeout', 'ProxyError', 'SSLError')
-        self.acquire_sockets()
+        self.request, self.proxy, self.used, self.raw, self.file = (
+            '' for _ in range(5)
+        )
+        self.headers,  self.json = {}, {}
+        self.status_code, self.timeout = 0, 3.0
+        self.errs = ('ConnectTimeout', 'ProxyError', 'SSLError', 'ReadTimeout')
+        self.empty_warn = 'Proxy Pool has been emptied'
+        self._acquire_sockets()
 
-    # get a list of sockets from sslproxies.org
-    def acquire_sockets(self):
+    def _acquire_sockets(self):
         r = requests.get('https://www.sslproxies.org/')
         matches = findall(r"<td>\d+\.\d+\.\d+\.\d+</td><td>\d+</td>", r.text)
         revised = [m.replace('<td>', '') for m in matches]
         self.sockets = [s[:-5].replace('</td>', ':') for s in revised]
 
-    def set_request_data(self, req, socket):
+    def _set_request_data(self, req, socket):
         self.request = req.text
         self.headers = req.headers
         self.status_code = req.status_code
-        self.raw_content = req.content
-        self.proxy_used = socket
+        self.raw = req.content
+        self.used = socket
         try:
             self.json = req.json()
         except Exception:
             self.json = {}
 
-    def rand_sock(self):
+    def _rand_sock(self):
         return randint(0, len(self.sockets) - 1)
 
-    def is_err(self, err):
+    def _is_err(self, err):
         if type(err).__name__ not in self.errs:
             raise err
 
-    @staticmethod
-    def limit_succeeded():
-        try:
-            raise PoolSucceeded('Proxy Pool has been emptied')
-        except PoolSucceeded:
-            print_exc(limit=1)
+    def _limit_succeeded(self):
+        raise Exception(self.empty_warn)
 
     def get(self):
         if len(self.sockets) > 0:
-            current_socket = self.sockets.pop(self.rand_sock())
+            current_socket = self.sockets.pop(self._rand_sock())
             proxies = {
                 'http': 'http://' + current_socket,
                 'https': 'https://' + current_socket
@@ -62,16 +57,16 @@ class ProxyRequests:
                     self.url,
                     timeout=self.timeout,
                     proxies=proxies)
-                self.set_request_data(request, current_socket)
+                self._set_request_data(request, current_socket)
             except Exception as e:
-                self.is_err(e)
+                self._is_err(e)
                 self.get()
         else:
-            self.limit_succeeded()
+            self._limit_succeeded()
 
     def get_with_headers(self):
         if len(self.sockets) > 0:
-            current_socket = self.sockets.pop(self.rand_sock())
+            current_socket = self.sockets.pop(self._rand_sock())
             proxies = {
                 'http': 'http://' + current_socket,
                 'https': 'https://' + current_socket
@@ -82,16 +77,16 @@ class ProxyRequests:
                     timeout=self.timeout,
                     proxies=proxies,
                     headers=self.headers)
-                self.set_request_data(request, current_socket)
+                self._set_request_data(request, current_socket)
             except Exception as e:
-                self.is_err(e)
+                self._is_err(e)
                 self.get_with_headers()
         else:
-            self.limit_succeeded()
+            self._limit_succeeded()
 
     def post(self, data):
         if len(self.sockets) > 0:
-            current_socket = self.sockets.pop(self.rand_sock())
+            current_socket = self.sockets.pop(self._rand_sock())
             proxies = {
                 'http': 'http://' + current_socket,
                 'https': 'https://' + current_socket
@@ -102,16 +97,16 @@ class ProxyRequests:
                     json=data,
                     timeout=self.timeout,
                     proxies=proxies)
-                self.set_request_data(request, current_socket)
+                self._set_request_data(request, current_socket)
             except Exception as e:
-                self.is_err(e)
+                self._is_err(e)
                 self.post(data)
-            else:
-                self.limit_succeeded()
+        else:
+            self._limit_succeeded()
 
     def post_with_headers(self, data):
         if len(self.sockets) > 0:
-            current_socket = self.sockets.pop(self.rand_sock())
+            current_socket = self.sockets.pop(self._rand_sock())
             proxies = {
                 'http': 'http://' + current_socket,
                 'https': 'https://' + current_socket
@@ -123,16 +118,16 @@ class ProxyRequests:
                     timeout=self.timeout,
                     headers=self.headers,
                     proxies=proxies)
-                self.set_request_data(request, current_socket)
+                self._set_request_data(request, current_socket)
             except Exception as e:
-                self.is_err(e)
+                self._is_err(e)
                 self.post_with_headers(data)
         else:
-            self.limit_succeeded()
+            self._limit_succeeded()
 
     def post_file(self):
         if len(self.sockets) > 0:
-            current_socket = self.sockets.pop(self.rand_sock())
+            current_socket = self.sockets.pop(self._rand_sock())
             proxies = {
                 'http': 'http://' + current_socket,
                 'https': 'https://' + current_socket
@@ -140,19 +135,19 @@ class ProxyRequests:
             try:
                 request = requests.post(
                     self.url,
-                    files=self.file_dict,
+                    proxies=proxies,
                     timeout=self.timeout,
-                    proxies=proxies)
-                self.set_request_data(request, current_socket)
+                    files={'upload_file': open(self.file_, 'rb')})
+                self._set_request_data(request, current_socket)
             except Exception as e:
-                self.is_err(e)
+                self._is_err(e)
                 self.post_file()
         else:
-            self.limit_succeeded()
+            self._limit_succeeded()
 
     def post_file_with_headers(self):
         if len(self.sockets) > 0:
-            current_socket = self.sockets.pop(self.rand_sock())
+            current_socket = self.sockets.pop(self._rand_sock())
             proxies = {
                 'http': 'http://' + current_socket,
                 'https': 'https://' + current_socket
@@ -160,16 +155,16 @@ class ProxyRequests:
             try:
                 request = requests.post(
                     self.url,
-                    files=self.file_dict,
+                    files={'upload_file': open(self.file_, 'rb')},
                     timeout=self.timeout,
                     headers=self.headers,
                     proxies=proxies)
-                self.set_request_data(request, current_socket)
+                self._set_request_data(request, current_socket)
             except Exception as e:
-                self.is_err(e)
+                self._is_err(e)
                 self.post_file_with_headers()
         else:
-            self.limit_succeeded()
+            self._limit_succeeded()
 
     def get_headers(self):
         return self.headers
@@ -178,16 +173,16 @@ class ProxyRequests:
         self.headers = outgoing_headers
 
     def set_file(self, outgoing_file):
-        self.file_dict = outgoing_file
+        self.file_ = outgoing_file
 
     def get_status_code(self):
         return self.status_code
 
     def get_proxy_used(self):
-        return str(self.proxy_used)
+        return self.used
 
     def get_raw(self):
-        return self.raw_content
+        return self.raw
 
     def get_json(self):
         return self.json
@@ -204,7 +199,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
 
     def get(self):
         if len(self.sockets) > 0:
-            current_socket = self.sockets.pop(self.rand_sock())
+            current_socket = self.sockets.pop(self._rand_sock())
             proxies = {
                 'http': 'http://' + current_socket,
                 'https': 'https://' + current_socket
@@ -215,16 +210,16 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                     auth=(self.username, self.password),
                     timeout=self.timeout,
                     proxies=proxies)
-                self.set_request_data(request, current_socket)
+                self._set_request_data(request, current_socket)
             except Exception as e:
-                self.is_err(e)
+                self._is_err(e)
                 self.get()
         else:
-            self.limit_succeeded()
+            self._limit_succeeded()
 
     def get_with_headers(self):
         if len(self.sockets) > 0:
-            current_socket = self.sockets.pop(self.rand_sock())
+            current_socket = self.sockets.pop(self._rand_sock())
             proxies = {
                 'http': 'http://' + current_socket,
                 'https': 'https://' + current_socket
@@ -236,16 +231,16 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                     timeout=self.timeout,
                     proxies=proxies,
                     headers=self.headers)
-                self.set_request_data(request, current_socket)
+                self._set_request_data(request, current_socket)
             except Exception as e:
-                self.is_err(e)
+                self._is_err(e)
                 self.get_with_headers()
         else:
-            self.limit_succeeded()
+            self._limit_succeeded()
 
     def post(self, data):
         if len(self.sockets) > 0:
-            current_socket = self.sockets.pop(self.rand_sock())
+            current_socket = self.sockets.pop(self._rand_sock())
             proxies = {
                 'http': 'http://' + current_socket,
                 'https': 'https://' + current_socket
@@ -257,16 +252,16 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                     auth=(self.username, self.password),
                     timeout=self.timeout,
                     proxies=proxies)
-                self.set_request_data(request, current_socket)
+                self._set_request_data(request, current_socket)
             except Exception as e:
-                self.is_err(e)
+                self._is_err(e)
                 self.post(data)
         else:
-            self.limit_succeeded()
+            self._limit_succeeded()
 
     def post_with_headers(self, data):
         if len(self.sockets) > 0:
-            current_socket = self.sockets.pop(self.rand_sock())
+            current_socket = self.sockets.pop(self._rand_sock())
             proxies = {
                 'http': 'http://' + current_socket,
                 'https': 'https://' + current_socket
@@ -279,16 +274,16 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                     timeout=self.timeout,
                     headers=self.headers,
                     proxies=proxies)
-                self.set_request_data(request, current_socket)
+                self._set_request_data(request, current_socket)
             except Exception as e:
-                self.is_err(e)
+                self._is_err(e)
                 self.post_with_headers(data)
         else:
-            self.limit_succeeded()
+            self._limit_succeeded()
 
     def post_file(self):
         if len(self.sockets) > 0:
-            current_socket = self.sockets.pop(self.rand_sock())
+            current_socket = self.sockets.pop(self._rand_sock())
             proxies = {
                 'http': 'http://' + current_socket,
                 'https': 'https://' + current_socket
@@ -296,20 +291,20 @@ class ProxyRequestsBasicAuth(ProxyRequests):
             try:
                 request = requests.post(
                     self.url,
-                    files=self.file_dict,
+                    files={'upload_file': open(self.file_, 'rb')},
                     auth=(self.username, self.password),
                     timeout=self.timeout,
                     proxies=proxies)
-                self.set_request_data(request, current_socket)
+                self._set_request_data(request, current_socket)
             except Exception as e:
-                self.is_err(e)
+                self._is_err(e)
                 self.post_file()
         else:
-            self.limit_succeeded()
+            self._limit_succeeded()
 
     def post_file_with_headers(self):
         if len(self.sockets) > 0:
-            current_socket = self.sockets.pop(self.rand_sock())
+            current_socket = self.sockets.pop(self._rand_sock())
             proxies = {
                 'http': 'http://' + current_socket,
                 'https': 'https://' + current_socket
@@ -317,18 +312,14 @@ class ProxyRequestsBasicAuth(ProxyRequests):
             try:
                 request = requests.post(
                     self.url,
-                    files=self.file_dict,
+                    files={'upload_file': open(self.file_, 'rb')},
                     auth=(self.username, self.password),
                     timeout=self.timeout,
                     headers=self.headers,
                     proxies=proxies)
-                self.set_request_data(request, current_socket)
+                self._set_request_data(request, current_socket)
             except Exception as e:
-                self.is_err(e)
+                self._is_err(e)
                 self.post_file_with_headers()
         else:
-            self.limit_succeeded()
-
-
-class PoolSucceeded(Exception):
-    pass
+            self._limit_succeeded()
