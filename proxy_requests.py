@@ -1,19 +1,32 @@
 import requests
 from random import randint
 from re import findall
-# rootVIII, pycodestyle validated
+# rootVIII | pycodestyle validated
+# 2018-2020
 
 
 class ProxyRequests:
     def __init__(self, url):
-        self.sockets = []
         self.url = url
-        self.request, self.proxy, self.used, self.raw, self.file_ = (
-            '' for _ in range(5)
-        )
-        self.headers,  self.json = {}, {}
-        self.status_code, self.timeout = 0, 3.0
-        self.errs = ('ConnectTimeout', 'ProxyError', 'SSLError', 'ReadTimeout')
+        self.sockets = []
+        self.rdata = {
+            'request': '',
+            'proxy': '',
+            'used': '',
+            'raw': '',
+            'file': '',
+            'headers': {},
+            'json': {},
+            'status_code': 0,
+            'timeout': 3.0,
+            'errs': [
+                'ConnectTimeout',
+                'ProxyError',
+                'SSLError',
+                'ReadTimeout',
+                'ConnectionError'
+            ]
+        }
         self.empty_warn = 'Proxy Pool has been emptied'
         self._acquire_sockets()
 
@@ -24,21 +37,21 @@ class ProxyRequests:
         self.sockets = [s[:-5].replace('</td>', ':') for s in revised]
 
     def _set_request_data(self, req, socket):
-        self.request = req.text
-        self.headers = req.headers
-        self.status_code = req.status_code
-        self.raw = req.content
-        self.used = socket
+        self.rdata['request'] = req.text
+        self.rdata['headers'] = req.headers
+        self.rdata['status_code'] = req.status_code
+        self.rdata['raw'] = req.content
+        self.rdata['used'] = socket
         try:
-            self.json = req.json()
-        except Exception:
-            self.json = {}
+            self.rdata['json'] = req.json()
+        except Exception as err:
+            self.rdata['json'] = {type(err).__name__: str(err)}
 
     def _rand_sock(self):
         return randint(0, len(self.sockets) - 1)
 
     def _is_err(self, err):
-        if type(err).__name__ not in self.errs:
+        if type(err).__name__ not in self.rdata['errs']:
             raise err
 
     def _limit_succeeded(self):
@@ -54,7 +67,7 @@ class ProxyRequests:
             try:
                 request = requests.get(
                     self.url,
-                    timeout=self.timeout,
+                    timeout=self.rdata['timeout'],
                     proxies=proxies)
                 self._set_request_data(request, current_socket)
             except Exception as e:
@@ -73,9 +86,9 @@ class ProxyRequests:
             try:
                 request = requests.get(
                     self.url,
-                    timeout=self.timeout,
+                    timeout=self.rdata['timeout'],
                     proxies=proxies,
-                    headers=self.headers)
+                    headers=self.rdata['headers'])
                 self._set_request_data(request, current_socket)
             except Exception as e:
                 self._is_err(e)
@@ -94,7 +107,7 @@ class ProxyRequests:
                 request = requests.post(
                     self.url,
                     json=data,
-                    timeout=self.timeout,
+                    timeout=self.rdata['timeout'],
                     proxies=proxies)
                 self._set_request_data(request, current_socket)
             except Exception as e:
@@ -114,8 +127,8 @@ class ProxyRequests:
                 request = requests.post(
                     self.url,
                     json=data,
-                    timeout=self.timeout,
-                    headers=self.headers,
+                    timeout=self.rdata['timeout'],
+                    headers=self.rdata['headers'],
                     proxies=proxies)
                 self._set_request_data(request, current_socket)
             except Exception as e:
@@ -135,8 +148,8 @@ class ProxyRequests:
                 request = requests.post(
                     self.url,
                     proxies=proxies,
-                    timeout=self.timeout,
-                    files={'upload_file': open(self.file_, 'rb')})
+                    timeout=self.rdata['timeout'],
+                    files={'upload_file': open(self.rdata['file'], 'rb')})
                 self._set_request_data(request, current_socket)
             except Exception as e:
                 self._is_err(e)
@@ -154,9 +167,9 @@ class ProxyRequests:
             try:
                 request = requests.post(
                     self.url,
-                    files={'upload_file': open(self.file_, 'rb')},
-                    timeout=self.timeout,
-                    headers=self.headers,
+                    files={'upload_file': open(self.rdata['file'], 'rb')},
+                    timeout=self.rdata['timeout'],
+                    headers=self.rdata['headers'],
                     proxies=proxies)
                 self._set_request_data(request, current_socket)
             except Exception as e:
@@ -166,28 +179,28 @@ class ProxyRequests:
             self._limit_succeeded()
 
     def get_headers(self):
-        return self.headers
+        return self.rdata['headers']
 
     def set_headers(self, outgoing_headers):
-        self.headers = outgoing_headers
+        self.rdata['headers'] = outgoing_headers
 
     def set_file(self, outgoing_file):
-        self.file_ = outgoing_file
+        self.rdata['file'] = outgoing_file
 
     def get_status_code(self):
-        return self.status_code
+        return self.rdata['status_code']
 
     def get_proxy_used(self):
-        return self.used
+        return self.rdata['used']
 
     def get_raw(self):
-        return self.raw
+        return self.rdata['raw']
 
     def get_json(self):
-        return self.json
+        return self.rdata['json']
 
     def __str__(self):
-        return str(self.request)
+        return str(self.rdata['request'])
 
 
 class ProxyRequestsBasicAuth(ProxyRequests):
@@ -207,7 +220,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                 request = requests.get(
                     self.url,
                     auth=(self.username, self.password),
-                    timeout=self.timeout,
+                    timeout=self.rdata['timeout'],
                     proxies=proxies)
                 self._set_request_data(request, current_socket)
             except Exception as e:
@@ -227,9 +240,9 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                 request = requests.get(
                     self.url,
                     auth=(self.username, self.password),
-                    timeout=self.timeout,
+                    timeout=self.rdata['timeout'],
                     proxies=proxies,
-                    headers=self.headers)
+                    headers=self.rdata['headers'])
                 self._set_request_data(request, current_socket)
             except Exception as e:
                 self._is_err(e)
@@ -249,7 +262,7 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                     self.url,
                     json=data,
                     auth=(self.username, self.password),
-                    timeout=self.timeout,
+                    timeout=self.rdata['timeout'],
                     proxies=proxies)
                 self._set_request_data(request, current_socket)
             except Exception as e:
@@ -270,8 +283,8 @@ class ProxyRequestsBasicAuth(ProxyRequests):
                     self.url,
                     json=data,
                     auth=(self.username, self.password),
-                    timeout=self.timeout,
-                    headers=self.headers,
+                    timeout=self.rdata['timeout'],
+                    headers=self.rdata['headers'],
                     proxies=proxies)
                 self._set_request_data(request, current_socket)
             except Exception as e:
@@ -290,9 +303,9 @@ class ProxyRequestsBasicAuth(ProxyRequests):
             try:
                 request = requests.post(
                     self.url,
-                    files={'upload_file': open(self.file_, 'rb')},
+                    files={'upload_file': open(self.rdata['file'], 'rb')},
                     auth=(self.username, self.password),
-                    timeout=self.timeout,
+                    timeout=self.rdata['timeout'],
                     proxies=proxies)
                 self._set_request_data(request, current_socket)
             except Exception as e:
@@ -311,10 +324,10 @@ class ProxyRequestsBasicAuth(ProxyRequests):
             try:
                 request = requests.post(
                     self.url,
-                    files={'upload_file': open(self.file_, 'rb')},
+                    files={'upload_file': open(self.rdata['file'], 'rb')},
                     auth=(self.username, self.password),
-                    timeout=self.timeout,
-                    headers=self.headers,
+                    timeout=self.rdata['timeout'],
+                    headers=self.rdata['headers'],
                     proxies=proxies)
                 self._set_request_data(request, current_socket)
             except Exception as e:
