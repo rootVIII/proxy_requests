@@ -163,7 +163,7 @@ r.post_file_with_headers()
 <code>print(r.get_proxy_used())</code>
 <br>
 <br>
-<b>To write raw data a to a file (including an image):</b>
+<b>To write raw data to a file (including an image):</b>
 <br>
 <pre>
     <code>
