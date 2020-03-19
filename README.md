@@ -182,7 +182,7 @@ with open('out.png', 'wb') as f:
 <pre>
     <code>
 import json
-with open('test.txt', 'w') as file_out:
+with open('test.txt', 'w') as f:
     json.dump(r.get_json(), f)
     </code>
 </pre>
