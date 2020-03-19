@@ -19,7 +19,7 @@ System Requirements: <b>Python 3</b> and the requests module.
 <br><br>
 Runs on Linux and Windows (and Mac probably) - <b>It may take a moment to run depending on the current proxy.</b>
 <br>
-Each request with a proxy is set with an 4 second timeout in the event that the request takes too long (before trying the next proxy socket in the queue).
+Each request with a proxy is set with an 3  second timeout in the event that the request takes too long (before trying the next proxy socket in the queue).
 <br><br>
 Proxies are randomly popped from the queue.
 <br><br>
@@ -65,7 +65,7 @@ r.post_with_headers({"key1": "value1", "key2": "value2"})
 <pre>
     <code>
 r = ProxyRequests("url here")
-r.set_file({'file': open('test.txt', 'rb')})
+r.set_file('test.txt')
 r.post_file()
     </code>
 </pre>
@@ -76,7 +76,7 @@ r.post_file()
 h = {"User-Agent": "NCSA Mosaic/3.0 (Windows 95)"}
 r = ProxyRequests("url here")
 r.set_headers(h)
-r.set_file({'file': open('test.txt', 'rb')})
+r.set_file('test.txt')
 r.post_file_with_headers()
     </code>
 </pre>
@@ -111,7 +111,7 @@ r.post({"key1": "value1", "key2": "value2"})
 <pre>
     <code>
 r = ProxyRequestsBasicAuth("url here", "username", "password")
-r.set_headers({"header_key": "header_value"})</code>
+r.set_headers({"header_key": "header_value"})
 r.post_with_headers({"key1": "value1", "key2": "value2"})
     </code>
 </pre>
@@ -120,7 +120,7 @@ r.post_with_headers({"key1": "value1", "key2": "value2"})
 <pre>
     <code>
 r = ProxyRequestsBasicAuth("url here", "username", "password")
-r.set_file({'file': open('test.txt', 'rb')})
+r.set_file('test.txt')
 r.post_file()
     </code>
 </pre>
@@ -130,8 +130,8 @@ r.post_file()
     <code>
 h = {"User-Agent": "NCSA Mosaic/3.0 (Windows 95)"}
 r = ProxyRequestsBasicAuth("url here", "username", "password")
-r.set_headers(h)</code>
-r.set_file({'file': open('test.txt', 'rb')})
+r.set_headers(h)
+r.set_file('test.txt')
 r.post_file_with_headers()
     </code>
 </pre>    
