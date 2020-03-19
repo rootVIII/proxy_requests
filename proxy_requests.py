@@ -9,7 +9,7 @@ class ProxyRequests:
     def __init__(self, url):
         self.sockets = []
         self.url = url
-        self.request, self.proxy, self.used, self.raw, self.file = (
+        self.request, self.proxy, self.used, self.raw, self.file_ = (
             '' for _ in range(5)
         )
         self.headers,  self.json = {}, {}
