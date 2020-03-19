@@ -29,42 +29,42 @@ The ProxyRequestBasicAuth subclass has the methods get(), get_with_headers(), po
 <b>GET:</b>
 <pre>
     <code>
-r = ProxyRequests("https://api.ipify.org")
-r.get()
-    </code>
-</pre>
-
-<b>GET with headers:</b>
-<pre>
-    <code>
-h = {"User-Agent": "NCSA Mosaic/3.0 (Windows 95)"}
-r = ProxyRequests("url here")
-r.set_headers(h)
-r.get_with_headers()
-    </code>
-</pre>
-
-<b>POST:</b>
-<pre>
-    <code>
-r = ProxyRequests("url here")
-r.post({"key1": "value1", "key2": "value2"})
-    </code>
-</pre>
-
+r = ProxyRequests('https://api.ipify.org')
+r.get()                                                                                                        
+    </code>                                                                                                    
+</pre>                                                                                                         
+                                                                                                               
+<b>GET with headers:</b>                                                                                       
+<pre>                                                                                                          
+    <code>                                                                                                     
+h = {'User-Agent': 'NCSA Mosaic/3.0 (Windows 95)'}                                                             
+r = ProxyRequests('url here')                                                                                  
+r.set_headers(h)                                                                                               
+r.get_with_headers()                                                                                           
+    </code>                                                                                                    
+</pre>                                                                                                         
+                                                                                                               
+<b>POST:</b>                                                                                                   
+<pre>                                                                                                          
+    <code>                                                                                                     
+r = ProxyRequests('url here')                                                                                  
+r.post({'key1': 'value1', 'key2': 'value2'})                                                                   
+    </code>                                                                                                    
+</pre>                                                                                                         
+                                                                                                               
 <b>POST with headers:</b>
 <pre>
     <code>
-r = ProxyRequests("url here")
-r.set_headers({"name": "rootVIII", "secret_message": "7Yufs9KIfj33d"})
-r.post_with_headers({"key1": "value1", "key2": "value2"})
+r = ProxyRequests('url here')
+r.set_headers({'name': 'rootVIII', 'secret_message': '7Yufs9KIfj33d'})
+r.post_with_headers({'key1': 'value1', 'key2': 'value2'})
     </code>
 </pre>
 
 <b>POST FILE:</b>
 <pre>
     <code>
-r = ProxyRequests("url here")
+r = ProxyRequests('url here')
 r.set_file('test.txt')
 r.post_file()
     </code>
@@ -73,8 +73,8 @@ r.post_file()
 <b>POST FILE with headers:</b>
 <pre>
     <code>
-h = {"User-Agent": "NCSA Mosaic/3.0 (Windows 95)"}
-r = ProxyRequests("url here")
+h = {'User-Agent': 'NCSA Mosaic/3.0 (Windows 95)'}
+r = ProxyRequests('url here')
 r.set_headers(h)
 r.set_file('test.txt')
 r.post_file_with_headers()
@@ -84,7 +84,7 @@ r.post_file_with_headers()
 <b>GET with Basic Authentication:</b>
 <pre>
     <code>
-r = ProxyRequestsBasicAuth("url here", "username", "password")
+r = ProxyRequestsBasicAuth('url here', 'username', 'password')
 r.get()
     </code>
 </pre>
@@ -92,8 +92,8 @@ r.get()
 <b>GET with headers & Basic Authentication:</b>
 <pre>
     <code>
-h = {"User-Agent": "NCSA Mosaic/3.0 (Windows 95)"}
-r = ProxyRequestsBasicAuth("url here", "username", "password")
+h = {'User-Agent': 'NCSA Mosaic/3.0 (Windows 95)'}
+r = ProxyRequestsBasicAuth('url here', 'username', 'password')
 r.set_headers(h)
 r.get_with_headers()
     </code>
@@ -102,24 +102,24 @@ r.get_with_headers()
 <b>POST with Basic Authentication:</b>
 <pre>
     <code>
-r = ProxyRequestsBasicAuth("url here", "username", "password")
-r.post({"key1": "value1", "key2": "value2"})
+r = ProxyRequestsBasicAuth('url here', 'username', 'password')
+r.post({'key1': 'value1', 'key2': 'value2'})
     </code>
 </pre>
 
 <b>POST with headers & Basic Authentication:</b>
 <pre>
     <code>
-r = ProxyRequestsBasicAuth("url here", "username", "password")
-r.set_headers({"header_key": "header_value"})
-r.post_with_headers({"key1": "value1", "key2": "value2"})
+r = ProxyRequestsBasicAuth('url here', 'username', 'password')
+r.set_headers({'header_key': 'header_value'})
+r.post_with_headers({'key1': 'value1', 'key2': 'value2'})
     </code>
 </pre>
 
 <b>POST FILE with Basic Authentication:</b>
 <pre>
     <code>
-r = ProxyRequestsBasicAuth("url here", "username", "password")
+r = ProxyRequestsBasicAuth('url here', 'username', 'password')
 r.set_file('test.txt')
 r.post_file()
     </code>
@@ -128,8 +128,8 @@ r.post_file()
 <b>POST FILE with headers & Basic Authentication:</b>
 <pre>
     <code>
-h = {"User-Agent": "NCSA Mosaic/3.0 (Windows 95)"}
-r = ProxyRequestsBasicAuth("url here", "username", "password")
+h = {'User-Agent': 'NCSA Mosaic/3.0 (Windows 95)'}
+r = ProxyRequestsBasicAuth('url here', 'username', 'password')
 r.set_headers(h)
 r.set_file('test.txt')
 r.post_file_with_headers()
@@ -187,10 +187,9 @@ with open('test.txt', 'w') as file_out:
     </code>
 </pre>
 <br><br>
-This was developed on Ubuntu 16.04.4 LTS.
+This was developed on Ubuntu 16.04.4/18.04 LTS.
 <hr>
-<b>Author: James Loye Colley  04AUG2018</b><br><br>
-<br>
+<b>Author: rootVIII  2018-2020</b>
+<br><br>
 <img src="https://github.com/rootVIII/proxy_requests/blob/master/ex1.png" alt="example1" height="675" width="950"><hr>
 <img src="https://github.com/rootVIII/proxy_requests/blob/master/ex2.png" alt="example1" height="675" width="950"><hr>
-
