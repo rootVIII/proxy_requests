@@ -158,6 +158,10 @@ r.post_file_with_headers()
 <br>
 <code>print(r.get_status_code())</code>
 <br>
+<b>Get the URL that was requested:</b>
+<br>
+<code>print(r.get_url())</code>
+<br>
 <b>Get the proxy that was used to make the request:</b>
 <br>
 <code>print(r.get_proxy_used())</code>
