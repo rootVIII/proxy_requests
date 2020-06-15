@@ -1,7 +1,8 @@
 import requests
 from random import randint
 from re import findall
-# rootVIII | pycodestyle validated
+# rootVIII
+# pycodestyle validated
 # 2018-2020
 
 
