@@ -14,6 +14,7 @@ class ProxyRequests:
             'proxy': '',
             'used': '',
             'raw': '',
+            'url': '',
             'file': '',
             'headers': {},
             'json': {},
@@ -40,6 +41,7 @@ class ProxyRequests:
         self.rdata['request'] = req.text
         self.rdata['headers'] = req.headers
         self.rdata['status_code'] = req.status_code
+        self.rdata['url'] = req.url
         self.rdata['raw'] = req.content
         self.rdata['used'] = socket
         try:
@@ -198,6 +200,9 @@ class ProxyRequests:
 
     def get_json(self):
         return self.rdata['json']
+
+    def get_url(self):
+        return self.rdata['url']
 
     def __str__(self):
         return str(self.rdata['request'])
