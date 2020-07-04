@@ -20,7 +20,8 @@ class ProxyRequests:
                 'ProxyError',
                 'SSLError',
                 'ReadTimeout',
-                'ConnectionError'
+                'ConnectionError',
+                'ConnectTimeoutError'
             ]
         }
         self.empty_warn = 'Proxy Pool has been emptied'
