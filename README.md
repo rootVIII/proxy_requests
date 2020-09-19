@@ -1,4 +1,11 @@
 ## Python Proxy Requests | make an http GET/POST with a proxy scraped from https://www.sslproxies.org/
+
+[![Build Status](https://travis-ci.org/rootVIII/proxy_requests.svg?branch=master)](https://travis-ci.org/rootVIII/proxy_requests)
+
+![GitHub](https://img.shields.io/github/license/rootVIII/proxy_requests)
+
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/proxy-requests)
+
 pypi.org: https://pypi.org/project/proxy-requests/
 <br><br>
 The ProxyRequests class first scrapes proxies from the web. Then it recursively attempts to make a request if the initial request with a proxy is unsuccessful.
