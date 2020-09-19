@@ -1,10 +1,7 @@
 ## Python Proxy Requests | make an http GET/POST with a proxy scraped from https://www.sslproxies.org/
 
-[![Build Status](https://travis-ci.org/rootVIII/proxy_requests.svg?branch=master)](https://travis-ci.org/rootVIII/proxy_requests)
-
-![GitHub](https://img.shields.io/github/license/rootVIII/proxy_requests)
-
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/proxy-requests)
+[![Build Status](https://travis-ci.org/rootVIII/proxy_requests.svg?branch=master)](https://travis-ci.org/rootVIII/proxy_requests) ![GitHub](https://img.shields.io/github/license/rootVIII/proxy_requests)
+ ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/proxy-requests)
 
 pypi.org: https://pypi.org/project/proxy-requests/
 <br><br>
