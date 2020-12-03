@@ -1,5 +1,8 @@
 ## Python Proxy Requests | make an http GET/POST with a proxy scraped from https://www.sslproxies.org/
 
+[![Downloads](https://pepy.tech/badge/proxy-requests)](https://pepy.tech/project/proxy-requests)
+[![Downloads](https://pepy.tech/badge/proxy-requests/month)](https://pepy.tech/project/proxy-requests)
+[![Downloads](https://pepy.tech/badge/proxy-requests/week)](https://pepy.tech/project/proxy-requests)
 
 pypi.org: https://pypi.org/project/proxy-requests/
 <br><br>
